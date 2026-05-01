@@ -41,14 +41,15 @@ body {
 .menu-panel {
   position: fixed;
   top: 0;
-  right: -320px;
-  width: 320px;
+  right: -340px;
+  width: 340px;
   height: 100vh;
   background: #F4F1EC;
   border-left: 1px solid rgba(31,31,31,0.12);
   padding: 90px 34px 34px;
   transition: right 0.35s ease;
   z-index: 1000;
+  overflow-y: auto;
 }
 
 .menu-panel.open {
@@ -74,14 +75,41 @@ body {
 }
 
 .menu-item.open .submenu {
-  max-height: 280px;
+  max-height: 700px;
 }
 
 .submenu-content {
   padding-top: 14px;
   font-size: 14px;
-  line-height: 1.55;
+  line-height: 1.5;
   color: #555;
+}
+
+.project {
+  margin-bottom: 22px;
+}
+
+.project:last-child {
+  margin-bottom: 0;
+}
+
+.project-title {
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  color: #1F1F1F;
+  margin-bottom: 7px;
+}
+
+.project-text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #555;
+}
+
+/* LINKS */
+a {
+  color: #1F1F1F;
+  text-decoration: none;
 }
 
 /* HOMEPAGE */
@@ -155,9 +183,23 @@ body {
     <div class="menu-title">PROJECTS</div>
     <div class="submenu">
       <div class="submenu-content">
-        Selected portfolio and development projects will be presented here.
-        <br><br>
-        Current focus areas include Corfu, Ioannina, Athens and the Cyclades.
+
+        <div class="project">
+          <div class="project-title">AETHER — VILLA IN KYTHNOS</div>
+          <div class="project-text">
+            A seaview villa development on Kythnos, positioned between Simousi and Gaidouromantra beaches.
+            The project combines contemporary Cycladic architecture, sheltered outdoor living, an infinity pool, and long-term value creation through design-led development.
+          </div>
+        </div>
+
+        <div class="project">
+          <div class="project-title">STUDIO RENOVATION — IOANNINA</div>
+          <div class="project-text">
+            Renovation of a compact top-floor studio in central Ioannina, including kitchen, bathroom, finishes, appliances, and terrace-focused living.
+            The intervention upgrades a small underused asset into a functional long-term rental property.
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -203,8 +245,25 @@ function toggleMenu() {
 }
 
 function toggleSubmenu(element) {
+  const allItems = document.querySelectorAll(".menu-item");
+
+  allItems.forEach(item => {
+    if (item !== element) {
+      item.classList.remove("open");
+    }
+  });
+
   element.classList.toggle("open");
 }
+
+document.addEventListener("click", function(e) {
+  const menu = document.getElementById("menuPanel");
+  const button = document.querySelector(".menu-button");
+
+  if (!menu.contains(e.target) && !button.contains(e.target)) {
+    menu.classList.remove("open");
+  }
+});
 </script>
 
 </body>
