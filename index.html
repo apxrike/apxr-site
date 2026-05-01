@@ -6,104 +6,206 @@
 <title>APXR</title>
 
 <style>
-body {
-  margin:0;
-  font-family: Arial, sans-serif;
-  background:#F4F1EC;
-  color:#1F1F1F;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  min-height:100vh;
-  text-align:center;
+* {
+  box-sizing: border-box;
 }
 
-.container {
-  max-width:460px;
-  padding:20px;
-  transform: translateY(20px);
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #F4F1EC;
+  color: #1F1F1F;
+  min-height: 100vh;
+}
+
+/* MENU BUTTON */
+.menu-button {
+  position: fixed;
+  top: 28px;
+  right: 28px;
+  width: 34px;
+  height: 26px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.menu-button span {
+  display: block;
+  height: 2px;
+  background: #1F1F1F;
+  margin: 7px 0;
+  transition: 0.3s ease;
+}
+
+/* MENU PANEL */
+.menu-panel {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 320px;
+  height: 100vh;
+  background: #F4F1EC;
+  border-left: 1px solid rgba(31,31,31,0.12);
+  padding: 90px 34px 34px;
+  transition: right 0.35s ease;
+  z-index: 1000;
+}
+
+.menu-panel.open {
+  right: 0;
+}
+
+.menu-item {
+  border-bottom: 1px solid rgba(31,31,31,0.12);
+  padding: 18px 0;
+  cursor: pointer;
+}
+
+.menu-title {
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #1F1F1F;
+}
+
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.menu-item.open .submenu {
+  max-height: 280px;
+}
+
+.submenu-content {
+  padding-top: 14px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #555;
+}
+
+/* HOMEPAGE */
+.home {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
 }
 
 .logo {
-  width:270px;
-  margin-bottom:30px;
-}
-
-.description {
-  font-size:13.5px;
-  line-height:1.4;
-  color:#555;
-  margin:0 auto 30px auto;
-  max-width:420px;
-}
-
-.section-title {
-  margin-top:30px;
-  font-size:12px;
-  letter-spacing:2px;
-  color:#888;
-}
-
-.info p {
-  margin:6px 0;
-  font-size:15px;
-}
-
-.legal p {
-  margin:5px 0;
-  font-size:13px;
-  color:#666;
-}
-
-a {
-  color:#1F1F1F;
-  text-decoration:none;
+  width: 280px;
+  max-width: 80vw;
 }
 
 .footer {
-  margin-top:40px;
-  font-size:12px;
-  color:#888;
+  position: fixed;
+  bottom: 24px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  color: #888;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .menu-panel {
+    width: 100%;
+    right: -100%;
+  }
+
+  .menu-button {
+    top: 22px;
+    right: 22px;
+  }
+
+  .logo {
+    width: 240px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-
-  <img src="logo.png" alt="APXR Logo" class="logo">
-
-  <p class="description">
-    APXR is a real estate development and asset management company focused on identifying, developing, and managing high-potential properties across Greece.
-    <br><br>
-    We take a long-term approach to value creation through disciplined investment, thoughtful design, and active management of our portfolio.
-  </p>
-
-  <div class="section-title">CONTACT</div>
-  <div class="info">
-    <p><a href="mailto:info@apxr.gr">info@apxr.gr</a></p>
-    <p><a href="tel:+306988168139">+30 6988168139</a></p>
-  </div>
-
-  <div class="section-title">ADDRESS</div>
-  <div class="info">
-    <p>Dimodokou 1 street</p>
-    <p>Corfu, 49 131, Greece</p>
-  </div>
-
-  <div class="section-title">LEGAL</div>
-  <div class="legal">
-    <p>ΑΦΜ: 996414719</p>
-    <p>Αρ. ΓΕΜΗ: 183888601000</p>
-  </div>
-
-  <div class="footer">
-    <p>APXR Real Estate Development & Asset Management</p>
-    <p>© 2025 All rights reserved</p>
-  </div>
-
+<!-- HAMBURGER -->
+<div class="menu-button" onclick="toggleMenu()">
+  <span></span>
+  <span></span>
+  <span></span>
 </div>
+
+<!-- SLIDE MENU -->
+<nav class="menu-panel" id="menuPanel">
+
+  <div class="menu-item" onclick="toggleSubmenu(this)">
+    <div class="menu-title">ABOUT US</div>
+    <div class="submenu">
+      <div class="submenu-content">
+        APXR is a real estate development and asset management company focused on identifying, developing, and managing high-potential properties across Greece.
+        <br><br>
+        We take a long-term approach to value creation through disciplined investment, thoughtful design, and active portfolio management.
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-item" onclick="toggleSubmenu(this)">
+    <div class="menu-title">PROJECTS</div>
+    <div class="submenu">
+      <div class="submenu-content">
+        Selected portfolio and development projects will be presented here.
+        <br><br>
+        Current focus areas include Corfu, Ioannina, Athens and the Cyclades.
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-item" onclick="toggleSubmenu(this)">
+    <div class="menu-title">CONTACT</div>
+    <div class="submenu">
+      <div class="submenu-content">
+        <a href="mailto:info@apxr.gr">info@apxr.gr</a><br>
+        <a href="tel:+306988168139">+30 6988168139</a>
+        <br><br>
+        Dimodokou 1 street<br>
+        Corfu, 49 131, Greece
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-item" onclick="toggleSubmenu(this)">
+    <div class="menu-title">LEGAL</div>
+    <div class="submenu">
+      <div class="submenu-content">
+        APXR Ι.Κ.Ε.<br>
+        ΑΦΜ: 996414719<br>
+        Αρ. ΓΕΜΗ: 183888601000
+      </div>
+    </div>
+  </div>
+
+</nav>
+
+<!-- HOME -->
+<main class="home">
+  <img src="logo.png" alt="APXR Logo" class="logo">
+</main>
+
+<div class="footer">
+  © 2025 All rights reserved
+</div>
+
+<script>
+function toggleMenu() {
+  document.getElementById("menuPanel").classList.toggle("open");
+}
+
+function toggleSubmenu(element) {
+  element.classList.toggle("open");
+}
+</script>
 
 </body>
 </html>
