@@ -19,14 +19,22 @@ body {
 }
 
 .container {
-  max-width:420px;
+  max-width:460px;
   padding:20px;
   transform: translateY(20px);
 }
 
 .logo {
   width:270px;
-  margin-bottom:35px;
+  margin-bottom:30px;
+}
+
+.description {
+  font-size:15px;
+  line-height:1.6;
+  color:#555;
+  margin:0 auto 35px auto;
+  max-width:430px;
 }
 
 .section-title {
@@ -36,9 +44,15 @@ body {
   color:#888;
 }
 
-.contact p {
+.info p {
   margin:6px 0;
   font-size:15px;
+}
+
+.legal p {
+  margin:5px 0;
+  font-size:13px;
+  color:#666;
 }
 
 a {
@@ -58,24 +72,32 @@ a {
 
 <div class="container">
 
-  <!-- LOGO -->
   <img src="logo.png" alt="APXR Logo" class="logo">
 
-  <!-- CONTACT -->
+  <p class="description">
+    APXR is a real estate development and asset management company focused on identifying, developing, and managing high-potential properties across Greece.
+    <br><br>
+    We take a long-term approach to value creation through disciplined investment, thoughtful design, and active management of our portfolio.
+  </p>
+
   <div class="section-title">CONTACT</div>
-  <div class="contact">
+  <div class="info">
     <p><a href="mailto:info@apxr.gr">info@apxr.gr</a></p>
     <p><a href="tel:+306988168139">+30 6988168139</a></p>
   </div>
 
-  <!-- ADDRESS -->
   <div class="section-title">ADDRESS</div>
-  <div class="contact">
+  <div class="info">
     <p>Dimodokou 1 street</p>
     <p>Corfu, 49 131, Greece</p>
   </div>
 
-  <!-- FOOTER -->
+  <div class="section-title">LEGAL</div>
+  <div class="legal">
+    <p>ΑΦΜ: 996414719</p>
+    <p>Αρ. ΓΕΜΗ: 183888601000</p>
+  </div>
+
   <div class="footer">
     <p>APXR Real Estate Development & Asset Management</p>
     <p>© 2025 All rights reserved</p>
