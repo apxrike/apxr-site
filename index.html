@@ -246,7 +246,7 @@ body.loaded {
 
 <!-- HOME -->
 <main class="home">
-  <img src="logo.png" alt="APXR Logo" class="logo">
+  <img src="logo.png" alt="APXR Logo" class="logo reveal">
 </main>
 
 <div class="footer">
@@ -279,8 +279,13 @@ document.addEventListener("click", function(e) {
   }
 });
   document.getElementById("year").textContent = new Date().getFullYear();
-  window.addEventListener("load", () => {
+window.addEventListener("load", () => {
   document.body.classList.add("loaded");
+
+  setTimeout(() => {
+    document.querySelector(".reveal").classList.add("visible");
+  }, 200);
+});
 });
 </script>
 
