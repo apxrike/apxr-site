@@ -236,7 +236,7 @@ a {
 </main>
 
 <div class="footer">
-  © 2025 All rights reserved
+   © <span id="year"></span> APXR
 </div>
 
 <script>
@@ -264,6 +264,7 @@ document.addEventListener("click", function(e) {
     menu.classList.remove("open");
   }
 });
+  document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
 </body>
