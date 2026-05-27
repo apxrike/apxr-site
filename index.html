@@ -816,6 +816,48 @@ padding-top: 16px;
       color: var(--earth);
       font-weight: 600;
     }
+    .funding-strip {
+  border-top: 1px solid rgba(32, 32, 29, 0.08);
+  background: rgba(216, 200, 174, 0.14);
+  padding: 28px 0;
+}
+
+.funding-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: center;
+}
+
+.funding-label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--earth);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.funding-text p {
+  font-size: 14px;
+  max-width: 720px;
+  color: rgba(32, 32, 29, 0.68);
+}
+
+.funding-logos {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.funding-logos img {
+  height: 48px;
+  width: auto;
+  display: block;
+  opacity: 0.9;
+}
 
     .footer {
       background: #191916;
@@ -897,7 +939,8 @@ padding-top: 16px;
       .about-panel,
       .contact-grid,
       .legal-grid,
-      .footer-top {
+      .footer-top
+      .funding-inner{
         grid-template-columns: 1fr;
       }
 
@@ -1415,7 +1458,28 @@ padding-top: 16px;
         </div>
       </section>
     </main>
+<section class="funding-strip">
 
+  <div class="container funding-inner">
+
+    <div class="funding-text">
+      <span class="funding-label">Co-funded project</span>
+
+      <p>
+        The Aether development project is supported through the TEPIX III financing scheme,
+        with co-financing by the European Union under the ESPA 2021–2027 programme
+        “Competitiveness”.
+      </p>
+    </div>
+
+    <div class="funding-logos">
+      <img src="eu-espa-banner.png" alt="European Union and ESPA 2021-2027">
+      <img src="hdb-logo.png" alt="Hellenic Development Bank">
+    </div>
+
+  </div>
+
+</section>
     <footer class="footer">
       <div class="container">
         <div class="footer-top">
