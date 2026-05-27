@@ -517,6 +517,13 @@ padding-top: 16px;
     .ratio-medium { min-height: 480px; }
     .ratio-tall { min-height: 610px; }
     .ratio-small { min-height: 300px; }
+    
+    .project-hero-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
 
     .subpage {
       padding: 132px 0 84px;
@@ -1197,7 +1204,11 @@ padding-top: 16px;
               <p>Villa in Kythnos. A private Cycladic retreat shaped by horizon, wind, stone and shade.</p>
             </div>
 
-            <div class="image-placeholder ratio-wide" data-size="Recommended: 2600 × 1500 px">IMAGE PLACEHOLDER</div>
+           <img 
+  src="aether-hero.png" 
+  alt="Aether Villa in Kythnos"
+  class="project-hero-image"
+/>v>
 
             <div class="fact-grid">
               <div class="fact"><span>Location</span><strong>Kythnos, Greece</strong></div>
