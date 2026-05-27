@@ -541,6 +541,18 @@ padding-top: 16px;
 .tall-image {
   aspect-ratio: 4 / 5;
 }
+    .floorplan-wrap {
+  width: 100%;
+  padding: 36px;
+  border: 1px solid rgba(32, 32, 29, 0.16);
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.floorplan-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 
     .subpage {
       padding: 132px 0 84px;
@@ -1282,11 +1294,13 @@ padding-top: 16px;
               </div>
             </div>
 
-            <div class="drawing-grid">
-              <div class="image-placeholder ratio-small" data-size="Plan / 1600 × 1100 px">IMAGE PLACEHOLDER</div>
-              <div class="image-placeholder ratio-small" data-size="Section / 1600 × 1100 px">IMAGE PLACEHOLDER</div>
-              <div class="image-placeholder ratio-small" data-size="Site / 1600 × 1100 px">IMAGE PLACEHOLDER</div>
-            </div>
+         <div class="floorplan-wrap">
+  <img 
+    src="aether-floorplan.png" 
+    alt="Aether Villa floor plan"
+    class="floorplan-image"
+  >
+</div>
           </div>
         </div>
       </section>
