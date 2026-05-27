@@ -1,298 +1,1179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>APXR</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>APXR — Architecture, Development & Asset Repositioning</title>
+  <meta name="description" content="APXR is a Greece-based architecture, real estate development and asset repositioning company focused on timeless, contextual and high-value spaces." />
 
-<style>
-* {
-  box-sizing: border-box;
-}
+  <style>
+    :root {
+      --sand: #d8c8ae;
+      --sand-light: #eee7dc;
+      --sand-soft: #f7f3ec;
+      --earth: #8f7b61;
+      --stone: #b6a58e;
+      --olive: #6f715c;
+      --charcoal: #20201d;
+      --charcoal-soft: #34332e;
+      --white: #ffffff;
+      --border: rgba(32, 32, 29, 0.16);
+      --overlay: rgba(32, 32, 29, 0.92);
+      --max: 1440px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #F4F1EC;
-  color: #1F1F1F;
-  min-height: 100vh;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-body.loaded {
-  opacity: 1;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-/* MENU BUTTON */
-.menu-button {
-  position: fixed;
-  top: 28px;
-  right: 28px;
-  width: 34px;
-  height: 26px;
-  cursor: pointer;
-  z-index: 1001;
-  transition: opacity 0.25s ease;
-}
+    body {
+      font-family: Inter, Helvetica, Arial, sans-serif;
+      background: var(--sand-soft);
+      color: var(--charcoal);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
 
-.menu-button:hover {
-  opacity: 0.6;
-}
+    body.menu-open {
+      overflow: hidden;
+    }
 
-.menu-button span {
-  display: block;
-  height: 2px;
-  background: #1F1F1F;
-  margin: 7px 0;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-/* MENU PANEL */
-.menu-panel {
-  position: fixed;
-  top: 0;
-  right: -340px;
-  width: 340px;
-  height: 100vh;
-  background: #F4F1EC;
-  border-left: 1px solid rgba(31,31,31,0.12);
-  padding: 90px 34px 34px;
-  transition: right 0.35s ease;
-  z-index: 1000;
-  overflow-y: auto;
-}
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-.menu-panel.open {
-  right: 0;
-}
+    ::selection {
+      background: var(--charcoal);
+      color: var(--sand-soft);
+    }
 
-.menu-item {
-  border-bottom: 1px solid rgba(31,31,31,0.12);
-  padding: 18px 0;
-  cursor: pointer;
-}
+    .page {
+      min-height: 100vh;
+      overflow: hidden;
+    }
 
-.menu-title {
-  font-size: 13px;
-  letter-spacing: 2px;
-}
+    .container {
+      width: min(calc(100% - 40px), var(--max));
+      margin: 0 auto;
+    }
 
-.submenu {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.35s ease;
-}
+    .narrow {
+      width: min(calc(100% - 40px), 980px);
+      margin: 0 auto;
+    }
 
-.menu-item.open .submenu {
-  max-height: 800px;
-}
+    .section {
+      padding: 120px 0;
+    }
 
-.submenu-content {
-  padding-top: 14px;
-  font-size: 14px;
-  line-height: 1.5;
-  color: #555;
-}
+    .section-tight {
+      padding: 80px 0;
+    }
 
-.project {
-  margin-bottom: 22px;
-}
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--earth);
+      margin-bottom: 22px;
+      font-weight: 600;
+    }
 
-.project-title {
-  font-size: 13px;
-  letter-spacing: 1.5px;
-  color: #1F1F1F;
-  margin-bottom: 7px;
-}
+    h1, h2, h3, .serif {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-weight: 400;
+      letter-spacing: -0.035em;
+      line-height: 0.98;
+    }
 
-.project-text {
-  font-size: 14px;
-  line-height: 1.5;
-  color: #555;
-}
+    h1 {
+      font-size: clamp(64px, 11vw, 176px);
+    }
 
-a {
-  color: #1F1F1F;
-  text-decoration: none;
-}
+    h2 {
+      font-size: clamp(44px, 7vw, 112px);
+    }
 
-/* HOME */
-.home {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 20px;
-}
+    h3 {
+      font-size: clamp(30px, 4vw, 58px);
+    }
 
-.logo {
-  width: 280px;
-  max-width: 80vw;
-}
+    p {
+      font-size: clamp(16px, 1.35vw, 19px);
+      color: rgba(32, 32, 29, 0.78);
+    }
 
-.reveal {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
+    .large-copy {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(30px, 4.6vw, 72px);
+      line-height: 1.06;
+      letter-spacing: -0.04em;
+      color: var(--charcoal);
+    }
 
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .muted {
+      color: rgba(32, 32, 29, 0.6);
+    }
 
-.footer {
-  position: fixed;
-  bottom: 24px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  font-size: 12px;
-  color: #888;
-}
+    .small {
+      font-size: 13px;
+      line-height: 1.5;
+    }
 
-/* MOBILE */
-@media (max-width: 600px) {
-  .menu-panel {
-    width: 100%;
-    right: -100%;
-  }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid var(--charcoal);
+      padding: 14px 22px;
+      font-size: 12px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      transition: all 0.45s var(--ease);
+      background: transparent;
+      cursor: pointer;
+    }
 
-  .menu-button {
-    top: 22px;
-    right: 22px;
-  }
+    .btn:hover {
+      background: var(--charcoal);
+      color: var(--sand-soft);
+      transform: translateY(-2px);
+    }
 
-  .logo {
-    width: 240px;
-  }
-}
-</style>
+    /* Header */
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 1000;
+      padding: 26px 0;
+      transition: background 0.35s var(--ease), padding 0.35s var(--ease), border 0.35s var(--ease);
+    }
+
+    .site-header.scrolled {
+      background: rgba(247, 243, 236, 0.86);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(32, 32, 29, 0.08);
+      padding: 16px 0;
+    }
+
+    .header-inner {
+      width: min(calc(100% - 40px), var(--max));
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      font-size: 22px;
+      letter-spacing: 0.28em;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .desktop-nav {
+      display: flex;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .desktop-nav a {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(32, 32, 29, 0.72);
+      transition: color 0.3s var(--ease);
+    }
+
+    .desktop-nav a:hover {
+      color: var(--charcoal);
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(32, 32, 29, 0.2);
+      background: rgba(247, 243, 236, 0.6);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1200;
+    }
+
+    .menu-toggle span {
+      width: 18px;
+      height: 1px;
+      background: var(--charcoal);
+      position: relative;
+      transition: all 0.35s var(--ease);
+    }
+
+    .menu-toggle span::before,
+    .menu-toggle span::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 18px;
+      height: 1px;
+      background: var(--charcoal);
+      transition: all 0.35s var(--ease);
+    }
+
+    .menu-toggle span::before { top: -6px; }
+    .menu-toggle span::after { top: 6px; }
+
+    body.menu-open .menu-toggle span {
+      background: transparent;
+    }
+
+    body.menu-open .menu-toggle span::before {
+      top: 0;
+      transform: rotate(45deg);
+      background: var(--sand-soft);
+    }
+
+    body.menu-open .menu-toggle span::after {
+      top: 0;
+      transform: rotate(-45deg);
+      background: var(--sand-soft);
+    }
+
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      background: var(--overlay);
+      color: var(--sand-soft);
+      z-index: 1100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.45s var(--ease);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    body.menu-open .mobile-menu {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-menu nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .mobile-menu a {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(44px, 13vw, 96px);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      opacity: 0.88;
+      transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+    }
+
+    .mobile-menu a:hover {
+      opacity: 1;
+      transform: translateY(-3px);
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 150px 0 70px;
+      position: relative;
+      background:
+        radial-gradient(circle at 85% 15%, rgba(216, 200, 174, 0.75), transparent 34%),
+        linear-gradient(135deg, var(--sand-soft) 0%, #e8dece 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 70px;
+      align-items: end;
+    }
+
+    .hero-kicker {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--earth);
+      margin-bottom: 28px;
+      font-weight: 600;
+    }
+
+    .hero-title {
+      margin-bottom: 32px;
+    }
+
+    .hero-text {
+      max-width: 520px;
+      margin-left: auto;
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 50px;
+      padding-top: 26px;
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-meta div {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(32, 32, 29, 0.62);
+    }
+
+    .hero-meta strong {
+      display: block;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+      text-transform: none;
+      color: var(--charcoal);
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    /* Image placeholders */
+    .image-placeholder {
+      min-height: 420px;
+      border: 1px solid rgba(32, 32, 29, 0.26);
+      background:
+        linear-gradient(135deg, rgba(32, 32, 29, 0.04) 25%, transparent 25%) -20px 0/40px 40px,
+        linear-gradient(225deg, rgba(32, 32, 29, 0.04) 25%, transparent 25%) -20px 0/40px 40px,
+        linear-gradient(315deg, rgba(32, 32, 29, 0.04) 25%, transparent 25%) 0 0/40px 40px,
+        linear-gradient(45deg, rgba(32, 32, 29, 0.04) 25%, transparent 25%) 0 0/40px 40px,
+        rgba(216, 200, 174, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: rgba(32, 32, 29, 0.45);
+      font-size: clamp(22px, 3vw, 48px);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .image-placeholder::after {
+      content: attr(data-size);
+      position: absolute;
+      bottom: 22px;
+      right: 24px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      color: rgba(32, 32, 29, 0.5);
+    }
+
+    .ratio-wide { min-height: min(62vw, 760px); }
+    .ratio-medium { min-height: 540px; }
+    .ratio-tall { min-height: 680px; }
+    .ratio-small { min-height: 320px; }
+
+    /* Intro */
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .intro-copy {
+      max-width: 900px;
+    }
+
+    .intro-copy p {
+      margin-top: 32px;
+      max-width: 700px;
+    }
+
+    /* Services */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--border);
+      border-left: 1px solid var(--border);
+    }
+
+    .card {
+      min-height: 330px;
+      padding: 34px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: background 0.35s var(--ease), transform 0.35s var(--ease);
+    }
+
+    .card:hover {
+      background: rgba(216, 200, 174, 0.2);
+    }
+
+    .card-number {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      color: var(--earth);
+    }
+
+    .card h3 {
+      font-size: clamp(28px, 3vw, 44px);
+      margin-bottom: 18px;
+    }
+
+    /* Featured projects */
+    .projects-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+      align-items: end;
+      margin-bottom: 56px;
+    }
+
+    .projects-header p {
+      max-width: 460px;
+    }
+
+    .project-list {
+      display: grid;
+      gap: 90px;
+    }
+
+    .project-card {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 50px;
+      align-items: center;
+      padding-bottom: 90px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-card:nth-child(even) .project-visual {
+      order: 2;
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 22px 0 30px;
+    }
+
+    .pill {
+      border: 1px solid rgba(32, 32, 29, 0.16);
+      padding: 8px 12px;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(32, 32, 29, 0.64);
+    }
+
+    /* Project detail pages */
+    .project-page {
+      background: var(--sand-soft);
+    }
+
+    .project-hero {
+      padding: 160px 0 0;
+    }
+
+    .project-title-row {
+      display: grid;
+      grid-template-columns: 1fr 0.7fr;
+      gap: 70px;
+      align-items: end;
+      margin-bottom: 56px;
+    }
+
+    .fact-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border-top: 1px solid var(--border);
+      border-left: 1px solid var(--border);
+      margin-top: 60px;
+    }
+
+    .fact {
+      padding: 22px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      min-height: 108px;
+    }
+
+    .fact span {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--earth);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .fact strong {
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+
+    .editorial-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 28px;
+    }
+
+    .text-columns {
+      display: grid;
+      grid-template-columns: 0.7fr 1fr;
+      gap: 80px;
+    }
+
+    .text-columns p + p {
+      margin-top: 22px;
+    }
+
+    .drawing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    /* About */
+    .about-block {
+      background: var(--charcoal);
+      color: var(--sand-soft);
+    }
+
+    .about-block p,
+    .about-block .muted {
+      color: rgba(247, 243, 236, 0.68);
+    }
+
+    .about-block .section-label {
+      color: var(--sand);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .founder-card {
+      border: 1px solid rgba(247, 243, 236, 0.18);
+      padding: 28px;
+    }
+
+    .founder-card .image-placeholder {
+      min-height: 460px;
+      color: rgba(247, 243, 236, 0.42);
+      border-color: rgba(247, 243, 236, 0.18);
+      background: rgba(247, 243, 236, 0.04);
+      margin-bottom: 24px;
+    }
+
+    .founder-card h3 {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .values-list {
+      display: grid;
+      gap: 28px;
+      margin-top: 40px;
+    }
+
+    .value-item {
+      padding-top: 24px;
+      border-top: 1px solid rgba(247, 243, 236, 0.16);
+    }
+
+    .value-item strong {
+      display: block;
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 10px;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 22px;
+      margin-top: 40px;
+    }
+
+    .contact-item {
+      border-top: 1px solid var(--border);
+      padding-top: 18px;
+    }
+
+    .contact-item span {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--earth);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .contact-item a,
+    .contact-item strong {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(24px, 3vw, 42px);
+      line-height: 1.08;
+      font-weight: 400;
+    }
+
+    /* Footer */
+    .footer {
+      background: #191916;
+      color: var(--sand-soft);
+      padding: 60px 0 34px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      padding-bottom: 60px;
+      border-bottom: 1px solid rgba(247, 243, 236, 0.15);
+    }
+
+    .footer-brand {
+      font-size: clamp(54px, 10vw, 160px);
+      letter-spacing: 0.08em;
+      line-height: 0.8;
+      font-weight: 600;
+    }
+
+    .footer p {
+      color: rgba(247, 243, 236, 0.62);
+    }
+
+    .footer-links {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .footer-links a {
+      display: block;
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(247, 243, 236, 0.68);
+      margin-bottom: 12px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      padding-top: 28px;
+      font-size: 12px;
+      color: rgba(247, 243, 236, 0.46);
+    }
+
+    /* Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1000px) {
+      .desktop-nav { display: none; }
+      .menu-toggle { display: flex; }
+
+      .hero-grid,
+      .intro-grid,
+      .project-card,
+      .project-title-row,
+      .text-columns,
+      .about-grid,
+      .contact-grid,
+      .footer-top {
+        grid-template-columns: 1fr;
+      }
+
+      .project-card:nth-child(even) .project-visual {
+        order: 0;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .fact-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .drawing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-text {
+        margin-left: 0;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .section { padding: 82px 0; }
+      .section-tight { padding: 58px 0; }
+      .hero { padding-bottom: 48px; }
+      .hero-meta { grid-template-columns: 1fr; }
+      .projects-header { display: block; }
+      .projects-header p { margin-top: 24px; }
+      .editorial-grid { grid-template-columns: 1fr; }
+      .fact-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; }
+      .ratio-wide, .ratio-medium, .ratio-tall { min-height: 360px; }
+      .contact-item a, .contact-item strong { font-size: 28px; }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="page">
+    <header class="site-header" id="siteHeader">
+      <div class="header-inner">
+        <a href="#home" class="brand" aria-label="APXR home">APXR</a>
 
-<!-- HAMBURGER -->
-<div class="menu-button" onclick="toggleMenu()">
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
+        <nav class="desktop-nav" aria-label="Main navigation">
+          <a href="#about">About us</a>
+          <a href="#projects">Projects</a>
+          <a href="#aether">Aether</a>
+          <a href="#ioannina-studio">Ioannina Studio</a>
+          <a href="#contact">Contact</a>
+          <a href="#legal">Legal</a>
+        </nav>
 
-<!-- SLIDE MENU -->
-<nav class="menu-panel" id="menuPanel">
-
-  <div class="menu-item" onclick="toggleSubmenu(this)">
-    <div class="menu-title">ABOUT US</div>
-    <div class="submenu">
-      <div class="submenu-content">
-        APXR is a real estate development and asset management company focused on identifying, developing, and managing high-potential properties across Greece.
-        <br><br>
-        We take a long-term approach to value creation through disciplined investment, thoughtful design, and active portfolio management.
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+          <span></span>
+        </button>
       </div>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <nav>
+        <a href="#about">About us</a>
+        <a href="#projects">Projects</a>
+        <a href="#aether">Aether</a>
+        <a href="#ioannina-studio">Ioannina Studio</a>
+        <a href="#contact">Contact</a>
+        <a href="#legal">Legal</a>
+      </nav>
     </div>
-  </div>
 
-  <div class="menu-item" onclick="toggleSubmenu(this)">
-    <div class="menu-title">PROJECTS</div>
-    <div class="submenu">
-      <div class="submenu-content">
+    <main>
+      <section class="hero" id="home">
+        <div class="container hero-grid">
+          <div>
+            <div class="hero-kicker reveal">Architecture · Development · Asset Repositioning</div>
+            <h1 class="hero-title reveal">Built with restraint.<br />Held with purpose.</h1>
+          </div>
+          <div class="hero-text reveal">
+            <p>APXR is a Greece-based architecture and real estate development company focused on the creation, transformation and long-term stewardship of high-value spaces.</p>
+            <div class="hero-meta">
+              <div><strong>Base</strong>Greece</div>
+              <div><strong>Focus</strong>Architecture-led development</div>
+              <div><strong>Approach</strong>Context, value, longevity</div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <div class="project">
-          <div class="project-title">AETHER — VILLA IN KYTHNOS</div>
-          <div class="project-text">
-            A seaview villa development on Kythnos, positioned between Simousi and Gaidouromantra beaches.
-            The project combines contemporary Cycladic architecture, sheltered outdoor living, an infinity pool, and long-term value creation through design-led development.
+      <section class="section" id="about-intro">
+        <div class="narrow intro-copy reveal">
+          <div class="section-label">Company</div>
+          <div class="large-copy">APXR works at the intersection of architecture, development and asset strategy.</div>
+          <p>We approach property not as a short-term product, but as a long-term spatial and financial asset. Our work combines architectural clarity, material restraint, operational thinking and a deep respect for context.</p>
+        </div>
+      </section>
+
+      <section class="section-tight">
+        <div class="container">
+          <div class="image-placeholder ratio-wide reveal" data-size="Recommended: 2400 × 1400 px">IMAGE PLACEHOLDER</div>
+        </div>
+      </section>
+
+      <section class="section" id="services">
+        <div class="container">
+          <div class="projects-header reveal">
+            <div>
+              <div class="section-label">What we do</div>
+              <h2>Scope</h2>
+            </div>
+            <p>From concept to positioning, APXR develops and improves property through a clear architectural and investment lens.</p>
+          </div>
+
+          <div class="cards-grid reveal">
+            <article class="card">
+              <div class="card-number">01</div>
+              <div>
+                <h3>Development</h3>
+                <p>Creation of new residential and hospitality-led assets with strong spatial identity, contextual sensitivity and long-term value.</p>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-number">02</div>
+              <div>
+                <h3>Architecture</h3>
+                <p>Design direction, spatial strategy, material concepts, visualization and coordination for buildings and interiors.</p>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-number">03</div>
+              <div>
+                <h3>Repositioning</h3>
+                <p>Targeted renovation and asset improvement strategies for properties with latent architectural, rental or market potential.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="container">
+          <div class="projects-header reveal">
+            <div>
+              <div class="section-label">Selected work</div>
+              <h2>Projects</h2>
+            </div>
+            <p>A curated overview of current and developing work across private residences, renovations and asset repositioning.</p>
+          </div>
+
+          <div class="project-list">
+            <article class="project-card reveal">
+              <div class="project-visual">
+                <div class="image-placeholder ratio-medium" data-size="Recommended: 1800 × 1300 px">IMAGE PLACEHOLDER</div>
+              </div>
+              <div>
+                <div class="section-label">Aether</div>
+                <h3>Villa in Kythnos</h3>
+                <div class="project-meta">
+                  <span class="pill">Cyclades</span>
+                  <span class="pill">Private residence</span>
+                  <span class="pill">Under development</span>
+                </div>
+                <p>Conceived as a quiet retreat embedded into the Cycladic landscape, Aether balances privacy, horizon and material restraint through a sequence of sheltered exterior spaces and monolithic volumes.</p>
+                <br />
+                <a class="btn" href="#aether">View project</a>
+              </div>
+            </article>
+
+            <article class="project-card reveal">
+              <div class="project-visual">
+                <div class="image-placeholder ratio-medium" data-size="Recommended: 1800 × 1300 px">IMAGE PLACEHOLDER</div>
+              </div>
+              <div>
+                <div class="section-label">Ioannina</div>
+                <h3>Studio renovation</h3>
+                <div class="project-meta">
+                  <span class="pill">City centre</span>
+                  <span class="pill">Residential</span>
+                  <span class="pill">Repositioning</span>
+                </div>
+                <p>A compact top-floor apartment with a private terrace is repositioned through precise, cost-conscious interventions: a cleaner kitchen, refreshed bathroom, improved comfort and stronger rental identity.</p>
+                <br />
+                <a class="btn" href="#ioannina-studio">View project</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-page" id="aether">
+        <div class="project-hero">
+          <div class="container">
+            <div class="project-title-row reveal">
+              <div>
+                <div class="section-label">Featured project</div>
+                <h2>Aether</h2>
+              </div>
+              <p>Villa in Kythnos. A private Cycladic retreat shaped by horizon, wind, stone and shade.</p>
+            </div>
+            <div class="image-placeholder ratio-wide reveal" data-size="Recommended: 2600 × 1500 px">IMAGE PLACEHOLDER</div>
           </div>
         </div>
 
-        <div class="project">
-          <div class="project-title">STUDIO RENOVATION — IOANNINA</div>
-          <div class="project-text">
-            Renovation of a compact top-floor studio in central Ioannina, including kitchen, bathroom, finishes, appliances, and terrace-focused living.
-            The intervention upgrades a small underused asset into a functional long-term rental property.
+        <div class="section-tight">
+          <div class="container">
+            <div class="fact-grid reveal">
+              <div class="fact"><span>Location</span><strong>Kythnos, Greece</strong></div>
+              <div class="fact"><span>Typology</span><strong>Private residence</strong></div>
+              <div class="fact"><span>Area</span><strong>Approx. 131 m² interior</strong></div>
+              <div class="fact"><span>Status</span><strong>Under development</strong></div>
+              <div class="fact"><span>Scope</span><strong>Development, architecture, visualization</strong></div>
+            </div>
           </div>
         </div>
 
+        <div class="section-tight">
+          <div class="narrow text-columns reveal">
+            <div>
+              <div class="section-label">Concept</div>
+            </div>
+            <div>
+              <p>Aether is designed as a restrained island house that prioritizes atmosphere over spectacle. The architecture frames the horizon while remaining grounded in the topography and material language of the Cyclades.</p>
+              <p>The project is organized around exterior living, sheltered thresholds and a direct relationship between interior rooms, terrace, pool and landscape. Its expression is intentionally quiet: stone, plaster, shade, water and light.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-tight">
+          <div class="container editorial-grid">
+            <div class="image-placeholder ratio-tall reveal" data-size="Recommended: 1400 × 1900 px">IMAGE PLACEHOLDER</div>
+            <div class="image-placeholder ratio-tall reveal" data-size="Recommended: 1400 × 1900 px">IMAGE PLACEHOLDER</div>
+          </div>
+          <div class="container editorial-grid">
+            <div class="image-placeholder ratio-medium reveal" data-size="Recommended: 1800 × 1300 px">IMAGE PLACEHOLDER</div>
+            <div class="image-placeholder ratio-medium reveal" data-size="Recommended: 1800 × 1300 px">IMAGE PLACEHOLDER</div>
+          </div>
+        </div>
+
+        <div class="section-tight">
+          <div class="narrow text-columns reveal">
+            <div>
+              <div class="section-label">Drawings</div>
+            </div>
+            <div>
+              <p>Plans, sections and technical drawings can be added here to show the architectural logic behind the project. This should not become clutter. One strong plan, one section and one site diagram are enough.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-tight">
+          <div class="container drawing-grid">
+            <div class="image-placeholder ratio-small reveal" data-size="Plan / 1600 × 1100 px">IMAGE PLACEHOLDER</div>
+            <div class="image-placeholder ratio-small reveal" data-size="Section / 1600 × 1100 px">IMAGE PLACEHOLDER</div>
+            <div class="image-placeholder ratio-small reveal" data-size="Site / 1600 × 1100 px">IMAGE PLACEHOLDER</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-page" id="ioannina-studio">
+        <div class="project-hero">
+          <div class="container">
+            <div class="project-title-row reveal">
+              <div>
+                <div class="section-label">Residential repositioning</div>
+                <h2>Ioannina Studio</h2>
+              </div>
+              <p>A compact city-centre apartment refreshed into a stronger, clearer and more rentable residential asset.</p>
+            </div>
+            <div class="image-placeholder ratio-wide reveal" data-size="Recommended: 2400 × 1400 px">IMAGE PLACEHOLDER</div>
+          </div>
+        </div>
+
+        <div class="section-tight">
+          <div class="container">
+            <div class="fact-grid reveal">
+              <div class="fact"><span>Location</span><strong>Ioannina, Greece</strong></div>
+              <div class="fact"><span>Typology</span><strong>Studio apartment</strong></div>
+              <div class="fact"><span>Area</span><strong>Approx. 31 m² + terrace</strong></div>
+              <div class="fact"><span>Status</span><strong>In planning</strong></div>
+              <div class="fact"><span>Scope</span><strong>Renovation, rental positioning</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-tight">
+          <div class="narrow text-columns reveal">
+            <div>
+              <div class="section-label">Approach</div>
+            </div>
+            <div>
+              <p>The renovation strategy is deliberately focused. Rather than overbuilding a small apartment, the project uses targeted upgrades to improve comfort, clarity and perceived value.</p>
+              <p>The private terrace and top-floor position are treated as the asset’s strongest advantages. Interior interventions remain simple, durable and rental-friendly.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-tight">
+          <div class="container editorial-grid">
+            <div class="image-placeholder ratio-medium reveal" data-size="Before / 1800 × 1300 px">IMAGE PLACEHOLDER</div>
+            <div class="image-placeholder ratio-medium reveal" data-size="After / 1800 × 1300 px">IMAGE PLACEHOLDER</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section about-block" id="about">
+        <div class="container about-grid">
+          <div class="founder-card reveal">
+            <div class="image-placeholder" data-size="Portrait / 1200 × 1500 px">IMAGE PLACEHOLDER</div>
+            <h3>Christoforos Roungeris</h3>
+            <p class="small">Architect Engineer MSc. TU Delft<br />Managing Director, APXR</p>
+          </div>
+
+          <div class="reveal">
+            <div class="section-label">About us</div>
+            <div class="large-copy" style="color: var(--sand-soft);">A lean, architecture-led development company with an operator’s eye for value.</div>
+            <br />
+            <p>APXR combines architectural training, development discipline and direct asset management experience. The company focuses on projects where design quality and financial logic reinforce each other.</p>
+            <div class="values-list">
+              <div class="value-item">
+                <strong>Context before image</strong>
+                <p>Each project begins with location, orientation, existing value and long-term use — not with a pre-packaged style.</p>
+              </div>
+              <div class="value-item">
+                <strong>Restraint over noise</strong>
+                <p>We prefer calm, durable and materially grounded spaces over fashionable gestures that age badly.</p>
+              </div>
+              <div class="value-item">
+                <strong>Value through clarity</strong>
+                <p>Good design is not decoration. It is a way to make assets easier to understand, stronger to occupy and better to hold.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="container contact-grid">
+          <div class="reveal">
+            <div class="section-label">Contact</div>
+            <h2>Let’s discuss the next asset.</h2>
+          </div>
+          <div class="reveal">
+            <p>For project inquiries, collaborations or asset repositioning discussions, contact APXR directly.</p>
+            <div class="contact-list">
+              <div class="contact-item">
+                <span>Email</span>
+                <a href="mailto:info@apxr.gr">info@apxr.gr</a>
+              </div>
+              <div class="contact-item">
+                <span>Website</span>
+                <a href="https://apxr.gr">apxr.gr</a>
+              </div>
+              <div class="contact-item">
+                <span>Company</span>
+                <strong>APXR ΙΚΕ</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" id="legal">
+      <div class="container">
+        <div class="footer-top">
+          <div class="footer-brand">APXR</div>
+          <div>
+            <p>Architecture, development and asset repositioning. Based in Greece.</p>
+            <br />
+            <div class="footer-links">
+              <div>
+                <a href="#about">About us</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+              </div>
+              <div>
+                <a href="mailto:info@apxr.gr">info@apxr.gr</a>
+                <a href="https://apxr.gr">apxr.gr</a>
+                <a href="#legal">Legal</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div>© <span id="year"></span> APXR ΙΚΕ. All rights reserved.</div>
+          <div>Built with restraint. Held with purpose.</div>
+        </div>
       </div>
-    </div>
+    </footer>
   </div>
 
-  <div class="menu-item" onclick="toggleSubmenu(this)">
-    <div class="menu-title">CONTACT</div>
-    <div class="submenu">
-      <div class="submenu-content">
-        <a href="mailto:info@apxr.gr">info@apxr.gr</a><br>
-        <a href="tel:+306988168139">+30 6988168139</a>
-        <br><br>
-        Dimodokou 1 street<br>
-        Corfu, 49 131, Greece
-      </div>
-    </div>
-  </div>
+  <script>
+    const header = document.getElementById('siteHeader');
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const year = document.getElementById('year');
 
-  <div class="menu-item" onclick="toggleSubmenu(this)">
-    <div class="menu-title">LEGAL</div>
-    <div class="submenu">
-      <div class="submenu-content">
-        APXR Ι.Κ.Ε.<br>
-        ΑΦΜ: 996414719<br>
-        Αρ. ΓΕΜΗ: 183888601000
-      </div>
-    </div>
-  </div>
+    year.textContent = new Date().getFullYear();
 
-</nav>
-
-<!-- HOME -->
-<main class="home">
-  <img src="logo.png" alt="APXR Logo" class="logo reveal">
-</main>
-
-<div class="footer">
-  © <span id="year"></span> APXR
-</div>
-
-<script>
-function toggleMenu() {
-  document.getElementById("menuPanel").classList.toggle("open");
-}
-
-function toggleSubmenu(element) {
-  const allItems = document.querySelectorAll(".menu-item");
-
-  allItems.forEach(item => {
-    if (item !== element) {
-      item.classList.remove("open");
+    function updateHeader() {
+      if (window.scrollY > 20) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
     }
-  });
 
-  element.classList.toggle("open");
-}
+    window.addEventListener('scroll', updateHeader);
+    updateHeader();
 
-document.addEventListener("click", function(e) {
-  const menu = document.getElementById("menuPanel");
-  const button = document.querySelector(".menu-button");
+    menuToggle.addEventListener('click', () => {
+      const isOpen = document.body.classList.toggle('menu-open');
+      menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      mobileMenu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+    });
 
-  if (!menu.contains(e.target) && !button.contains(e.target)) {
-    menu.classList.remove("open");
-  }
-});
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.body.classList.remove('menu-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+      });
+    });
 
-window.addEventListener("load", () => {
-  document.body.classList.add("loaded");
+    const revealItems = document.querySelectorAll('.reveal');
 
-  setTimeout(() => {
-    const logo = document.querySelector(".reveal");
-    if (logo) {
-      logo.classList.add("visible");
-    }
-  }, 200);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12
+    });
 
-  document.getElementById("year").textContent = new Date().getFullYear();
-});
-</script>
-
+    revealItems.forEach(item => observer.observe(item));
+  </script>
 </body>
 </html>
