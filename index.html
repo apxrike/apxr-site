@@ -553,6 +553,14 @@ padding-top: 16px;
   height: auto;
   display: block;
 }
+    .founder-image {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(100%);
+  background: white;
+}
 
     .subpage {
       padding: 132px 0 84px;
@@ -1100,7 +1108,11 @@ padding-top: 16px;
 
             <div class="about-panel">
               <div class="founder-card">
-                <div class="image-placeholder" data-size="Portrait / 1200 × 1500 px">IMAGE PLACEHOLDER</div>
+              <img 
+  src="christoforos-portrait.jpg" 
+  alt="Christoforos Roungeris"
+  class="founder-image"
+/>
                 <h3>Christoforos Roungeris</h3>
                 <p class="small">Architect Engineer MSc. TU Delft<br />Managing Director, APXR</p>
               </div>
