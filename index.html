@@ -800,22 +800,30 @@ padding-top: 16px;
       color: rgba(247, 243, 236, 0.62);
     }
 
-    .footer-links {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-    }
+  .footer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
 
-    .footer-links button,
-    .footer-links a {
-      display: block;
-      font-size: 12px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(247, 243, 236, 0.68);
-      margin-bottom: 12px;
-      text-align: left;
-    }
+.footer-info a {
+  font-size: clamp(22px, 3vw, 40px);
+  font-family: Georgia, 'Times New Roman', serif;
+  color: var(--sand-soft);
+  transition: opacity 0.3s var(--ease);
+}
+
+.footer-info a:hover {
+  opacity: 0.7;
+}
+
+.footer-legal {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(247, 243, 236, 0.46);
+  line-height: 1.8;
+}
 
     .footer-bottom {
       display: flex;
@@ -1353,19 +1361,13 @@ padding-top: 16px;
           <div>
             <p>Architecture, development and asset repositioning. Based in Greece.</p>
             <br />
-            <div class="footer-links">
-              <div>
-                <button class="nav-link" data-view="about">About</button>
-                <button class="nav-link" data-view="scope">Scope</button>
-                <button class="nav-link" data-view="projects">Projects</button>
-                <button class="nav-link" data-view="contact">Contact</button>
-              </div>
-              <div>
-                <a href="mailto:info@apxr.gr">info@apxr.gr</a>
-                <a href="https://apxr.gr">apxr.gr</a>
-                <button class="nav-link" data-view="legal">Legal</button>
-              </div>
-            </div>
+      <div class="footer-info">
+  <a href="mailto:info@apxr.gr">info@apxr.gr</a>
+
+  <div class="footer-legal">
+    APXR ΙΚΕ · ΑΦΜ 996414719 · ΓΕΜΗ 183888601000
+  </div>
+</div>
           </div>
         </div>
         <div class="footer-bottom">
