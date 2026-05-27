@@ -524,6 +524,23 @@ padding-top: 16px;
   object-fit: cover;
   display: block;
 }
+    .editorial-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.editorial-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+}
+
+.tall-image {
+  aspect-ratio: 4 / 5;
+}
 
     .subpage {
       padding: 132px 0 84px;
@@ -1228,14 +1245,33 @@ padding-top: 16px;
               </div>
             </div>
 
-            <div class="editorial-grid">
-              <div class="image-placeholder ratio-tall" data-size="Recommended: 1400 × 1900 px">IMAGE PLACEHOLDER</div>
-              <div class="image-placeholder ratio-tall" data-size="Recommended: 1400 × 1900 px">IMAGE PLACEHOLDER</div>
-            </div>
-            <div class="editorial-grid">
-              <div class="image-placeholder ratio-medium" data-size="Recommended: 1800 × 1300 px">IMAGE PLACEHOLDER</div>
-              <div class="image-placeholder ratio-medium" data-size="Recommended: 1800 × 1300 px">IMAGE PLACEHOLDER</div>
-            </div>
+           <div class="editorial-grid editorial-grid-4">
+
+  <img 
+    src="aether-home-1.jpg" 
+    alt="Aether Villa exterior"
+    class="editorial-image tall-image"
+  >
+
+  <img 
+    src="aether-home-2.jpg" 
+    alt="Aether Villa pool"
+    class="editorial-image tall-image"
+  >
+
+  <img 
+    src="aether-home-3.jpg" 
+    alt="Aether Villa interior"
+    class="editorial-image"
+  >
+
+  <img 
+    src="aether-home-4.jpg" 
+    alt="Aether Villa terrace"
+    class="editorial-image"
+  >
+
+</div>
 
             <div class="text-columns">
               <div>
