@@ -173,6 +173,11 @@
       border-bottom: 1px solid rgba(32, 32, 29, 0.08);
       padding: 13px 0;
     }
+    
+    .header {
+  backdrop-filter: blur(12px);
+  background: rgba(247,243,236,0.88);
+}
 
     .header-inner {
       width: min(calc(100% - 40px), var(--max));
@@ -296,6 +301,17 @@ padding-top: 16px;
       background: var(--charcoal);
       transition: all 0.35s var(--ease);
     }
+    
+    .editorial-image,
+.project-hero-image,
+.slide {
+  transition: transform 0.8s ease;
+}
+
+.editorial-image:hover,
+.project-hero-image:hover {
+  transform: scale(1.02);
+}
 
     .menu-toggle span::before { top: -6px; }
     .menu-toggle span::after { top: 6px; }
@@ -1041,6 +1057,18 @@ padding-top: 16px;
 
       .mobile-menu button {
         font-size: clamp(38px, 13vw, 62px);
+        .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
       }
     }
   </style>
@@ -1095,7 +1123,7 @@ padding-top: 16px;
     <main>
       <section class="view active" id="view-home" data-title="APXR — Built with restraint. Held with purpose.">
         <div class="hero">
-          <div class="container hero-grid">
+          <div class="container hero-grid reveal">
             <div>
               <div class="hero-kicker">Architecture · Development · Asset Repositioning</div>
               <h1 class="hero-title">Built with restraint.<br />Held with purpose.</h1>
@@ -1116,7 +1144,7 @@ padding-top: 16px;
         </div>
 
         <div class="featured-strip">
-          <div class="container featured-card">
+          <div class="container featured-card reveal">
            <div class="featured-slideshow" aria-label="Aether Villa image slideshow">
   <img src="aether-home-1.png" alt="Aether Villa in Kythnos exterior view" class="slide active">
   <img src="aether-home-2.png" alt="Aether Villa in Kythnos pool view" class="slide">
@@ -1141,7 +1169,7 @@ padding-top: 16px;
       <section class="view" id="view-about" data-title="APXR — About">
         <div class="subpage">
           <div class="container">
-            <div class="page-header">
+            <div class="page-header reveal">
               <div>
                 <div class="section-label">About</div>
                 <h2>Architecture-led development with an operator’s eye for value.</h2>
@@ -1150,7 +1178,7 @@ padding-top: 16px;
             </div>
 
             <div class="about-panel">
-              <div class="founder-card">
+              <div class="founder-card reveal">
               <img 
   src="christoforos-portrait.jpg" 
   alt="Christoforos Roungeris"
@@ -1188,7 +1216,7 @@ padding-top: 16px;
       <section class="view" id="view-scope" data-title="APXR — Scope">
         <div class="subpage">
           <div class="container">
-            <div class="page-header">
+            <div class="page-header reveal">
               <div>
                 <div class="section-label">Scope</div>
                 <h2>What we do</h2>
@@ -1196,7 +1224,7 @@ padding-top: 16px;
               <p>From concept to positioning, APXR develops and improves property through a clear architectural and investment lens.</p>
             </div>
 
-            <div class="cards-grid">
+            <div class="cards-grid reveal">
               <article class="card">
                 <div class="card-number">01</div>
                 <div>
@@ -1228,7 +1256,7 @@ padding-top: 16px;
       <section class="view" id="view-projects" data-title="APXR — Projects">
         <div class="subpage">
           <div class="container">
-            <div class="page-header">
+            <div class="page-header reveal">
               <div>
                 <div class="section-label">Selected work</div>
                 <h2>Projects</h2>
@@ -1236,7 +1264,7 @@ padding-top: 16px;
               <p>A curated overview of current and developing work across private residences, renovations and asset repositioning.</p>
             </div>
 
-            <div class="project-list">
+            <div class="project-list reveal">
               <article class="project-card">
                 <div class="project-visual">
                   <div class="image-placeholder ratio-medium" data-size="Recommended: 1800 × 1300 px">IMAGE PLACEHOLDER</div>
@@ -1280,7 +1308,7 @@ padding-top: 16px;
       <section class="view" id="view-aether" data-title="APXR — Aether Villa in Kythnos">
         <div class="subpage">
           <div class="container">
-            <div class="page-header">
+            <div class="page-header reveal">
               <div>
                 <div class="section-label">Featured project</div>
                 <h2>Aether</h2>
@@ -1291,10 +1319,10 @@ padding-top: 16px;
            <img 
   src="aether-hero.png" 
   alt="Aether Villa in Kythnos"
-  class="project-hero-image"
+  class="project-hero-image reveal"
 />v>
 
-            <div class="fact-grid">
+            <div class="fact-grid reveal">
               <div class="fact"><span>Location</span><strong>Kythnos, Greece</strong></div>
               <div class="fact"><span>Typology</span><strong>Private residence</strong></div>
               <div class="fact"><span>Area</span><strong>Approx. 131 m² interior</strong></div>
@@ -1302,7 +1330,7 @@ padding-top: 16px;
               <div class="fact"><span>Scope</span><strong>Development, architecture, visualization</strong></div>
             </div>
 
-            <div class="text-columns">
+            <div class="text-columns reveal">
               <div>
                 <div class="section-label">Concept</div>
               </div>
@@ -1312,7 +1340,7 @@ padding-top: 16px;
               </div>
             </div>
 
-           <div class="editorial-grid editorial-grid-4">
+           <div class="editorial-grid editorial-grid-4 reveal">
 
   <img 
     src="aether-home-1.png" 
@@ -1341,7 +1369,7 @@ padding-top: 16px;
 </div>
 
           
-         <div class="floorplan-wrap">
+         <div class="floorplan-wrap reveal">
   <img 
     src="aether-floorplan.png" 
     alt="Aether Villa floor plan"
@@ -1355,7 +1383,7 @@ padding-top: 16px;
       <section class="view" id="view-ioannina" data-title="APXR — Ioannina Studio Renovation">
         <div class="subpage">
           <div class="container">
-            <div class="page-header">
+            <div class="page-header reveal">
               <div>
                 <div class="section-label">Residential repositioning</div>
                 <h2>Ioannina Studio</h2>
@@ -1365,7 +1393,7 @@ padding-top: 16px;
 
             <div class="image-placeholder ratio-wide" data-size="Recommended: 2400 × 1400 px">IMAGE PLACEHOLDER</div>
 
-            <div class="fact-grid">
+            <div class="fact-grid reveal">
               <div class="fact"><span>Location</span><strong>Ioannina, Greece</strong></div>
               <div class="fact"><span>Typology</span><strong>Studio apartment</strong></div>
               <div class="fact"><span>Area</span><strong>Approx. 31 m² + terrace</strong></div>
@@ -1393,7 +1421,7 @@ padding-top: 16px;
 
       <section class="view" id="view-contact" data-title="APXR — Contact">
         <div class="subpage">
-          <div class="container contact-grid">
+          <div class="container contact-grid reveal">
             <div>
               <div class="section-label">Contact</div>
               <h2>Let’s discuss the next asset.</h2>
@@ -1421,7 +1449,7 @@ padding-top: 16px;
 
       <section class="view" id="view-legal" data-title="APXR — Legal">
         <div class="subpage">
-          <div class="container legal-grid">
+          <div class="container legal-grid reveal">
             <div>
               <div class="section-label">Legal</div>
               <h2>Company information</h2>
@@ -1458,7 +1486,7 @@ padding-top: 16px;
         </div>
       </section>
     </main>
-<section class="funding-strip">
+<section class="funding-strip reveal">
 
   <div class="container funding-inner">
 
@@ -1603,6 +1631,24 @@ if (slides.length > 1) {
     slides[currentSlide].classList.add('active');
   }, 4500);
 }
+    const revealElements = document.querySelectorAll('.reveal');
+
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  },
+  {
+    threshold: 0.12
+  }
+);
+
+revealElements.forEach((el) => {
+  revealObserver.observe(el);
+});
   </script>
 </body>
 </html>
