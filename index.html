@@ -648,6 +648,17 @@ padding-top: 16px;
     .project-card:nth-child(even) .project-visual {
       order: 2;
     }
+    .project-card-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.8s ease;
+}
+
+.project-card-image:hover {
+  transform: scale(1.015);
+}
 
     .project-meta {
       display: flex;
@@ -1119,6 +1130,7 @@ padding-top: 16px;
   <div class="dropdown-menu">
     <button class="nav-link" data-view="aether">Aether</button>
     <button class="nav-link" data-view="ioannina">Ioannina Studio</button>
+   <button class="nav-link" data-view="corfu-residence">Corfu Residence</button>
   </div>
 </div>
           <button class="nav-link" data-view="contact">Contact</button>
@@ -1140,6 +1152,7 @@ padding-top: 16px;
         <button class="nav-link" data-view="projects">Projects</button>
         <button class="nav-link" data-view="aether">Aether</button>
         <button class="nav-link" data-view="ioannina">Ioannina</button>
+        <button class="nav-link" data-view="corfu-residence">Corfu Residence</button>
         <button class="nav-link" data-view="contact">Contact</button>
         <button class="nav-link" data-view="legal">Legal</button>
       </nav>
@@ -1330,6 +1343,37 @@ Combining architectural training with hands-on ownership and management experien
                   <button class="btn nav-link" data-view="ioannina">View project</button>
                 </div>
               </article>
+              
+              <article class="project-card">
+  <div class="project-visual">
+    <img 
+      src="corfu-residence-hero.jpg" 
+      alt="Corfu Residence renovation"
+      class="project-card-image"
+    >
+  </div>
+
+  <div>
+    <div class="section-label">Corfu</div>
+    <h3>Private residence renovation</h3>
+
+    <div class="project-meta">
+      <span class="pill">Private residence</span>
+      <span class="pill">Renovation</span>
+      <span class="pill">Completed 1999</span>
+    </div>
+
+    <p>
+      A private residence renovation in Corfu, completed as a family project in 1999. 
+      The work reflects a long-standing engagement with architectural detail, material quality 
+      and the transformation of existing buildings into lasting homes.
+    </p>
+
+    <br />
+
+    <button class="btn nav-link" data-view="corfu-residence">View project</button>
+  </div>
+</article>
             </div>
           </div>
         </div>
@@ -1448,6 +1492,90 @@ Combining architectural training with hands-on ownership and management experien
           </div>
         </div>
       </section>
+      
+      <section class="view" id="view-corfu-residence" data-title="APXR — Corfu Residence Renovation">
+  <div class="subpage">
+    <div class="container">
+
+      <div class="page-header reveal">
+        <div>
+          <div class="section-label">Private residence</div>
+          <h2>Corfu Residence</h2>
+        </div>
+
+        <p>
+          A private residence renovation in Corfu, completed in 1999. 
+          A layered family project combining architectural intervention, long-term ownership 
+          and the careful transformation of an existing home.
+        </p>
+      </div>
+
+      <img 
+        src="corfu-residence-hero.jpg" 
+        alt="Corfu Residence renovation"
+        class="project-hero-image reveal"
+      >
+
+      <div class="fact-grid reveal">
+        <div class="fact"><span>Location</span><strong>Corfu, Greece</strong></div>
+        <div class="fact"><span>Typology</span><strong>Private residence</strong></div>
+        <div class="fact"><span>Status</span><strong>Completed</strong></div>
+        <div class="fact"><span>Year</span><strong>1999</strong></div>
+        <div class="fact"><span>Scope</span><strong>Renovation, architecture, interiors</strong></div>
+      </div>
+
+      <div class="text-columns reveal">
+        <div>
+          <div class="section-label">Approach</div>
+        </div>
+
+        <div>
+          <p>
+            The Corfu Residence reflects the company’s long relationship with real estate 
+            as both an architectural and personal undertaking. Rather than treating renovation 
+            as a cosmetic exercise, the project focused on atmosphere, durability and the 
+            careful upgrading of an existing residence.
+          </p>
+
+          <p>
+            Its inclusion in the APXR portfolio marks the continuity between earlier family-led 
+            architectural work and the company’s current direction: improving assets with 
+            restraint, long-term thinking and respect for place.
+          </p>
+        </div>
+      </div>
+
+      <div class="editorial-grid editorial-grid-4 reveal">
+
+        <img 
+          src="corfu-residence-1.jpg" 
+          alt="Corfu Residence interior"
+          class="editorial-image"
+        >
+
+        <img 
+          src="corfu-residence-2.jpg" 
+          alt="Corfu Residence detail"
+          class="editorial-image"
+        >
+
+        <img 
+          src="corfu-residence-3.jpg" 
+          alt="Corfu Residence living space"
+          class="editorial-image"
+        >
+
+        <img 
+          src="corfu-residence-4.jpg" 
+          alt="Corfu Residence exterior or terrace"
+          class="editorial-image"
+        >
+
+      </div>
+
+    </div>
+  </div>
+</section>
 
       <section class="view" id="view-contact" data-title="APXR — Contact">
         <div class="subpage">
