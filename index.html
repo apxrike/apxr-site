@@ -211,6 +211,18 @@
       flex-wrap: wrap;
       justify-content: flex-end;
     }
+      .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
     .desktop-nav button {
       font-size: 11px;
@@ -1078,9 +1090,50 @@ padding-top: 16px;
       .footer-bottom {
         flex-direction: column;
       }
-      
-      .footer-logo img {
-  outline: 1px solid red;
+      @media (max-width: 680px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 34px;
+    text-align: center;
+  }
+
+  .footer-brand {
+    width: 100%;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  .footer-logo {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .footer-logo img {
+    width: min(260px, 72vw);
+    margin: 0 auto;
+  }
+
+  .footer-locations {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .footer-info {
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-legal {
+    text-align: center;
+  }
+
+  .footer-bottom {
+    align-items: center;
+    text-align: center;
+  }
 }
 
       .ratio-wide, .ratio-medium, .ratio-tall {
@@ -1093,18 +1146,7 @@ padding-top: 16px;
 
       .mobile-menu button {
         font-size: clamp(38px, 13vw, 62px);
-        .reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition:
-    opacity 0.8s ease,
-    transform 0.8s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+      
       }
     }
   </style>
