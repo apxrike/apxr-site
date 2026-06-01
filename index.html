@@ -1961,18 +1961,11 @@ const lightboxClose = document.getElementById('lightboxClose');
 
 if (lightbox && lightboxImage && lightboxClose) {
 
-  document.querySelectorAll(
-    '.editorial-image, .project-hero-image, .project-card-image, .floorplan-image, .slide'
-  ).forEach((img) => {
-
-    img.addEventListener('click', () => {
-      lightboxImage.src = img.currentSrc || img.src;
-      lightboxImage.alt = img.alt || '';
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
-
+  galleryImages.forEach((img, index) => {
+  img.addEventListener('click', () => {
+    openLightbox(index);
   });
+});
 
   function closeLightbox() {
     lightbox.classList.remove('active');
@@ -1981,6 +1974,19 @@ if (lightbox && lightboxImage && lightboxClose) {
   }
 
   lightboxClose.addEventListener('click', closeLightbox);
+  if (lightboxPrev && lightboxNext) {
+
+  lightboxPrev.addEventListener('click', (event) => {
+    event.stopPropagation();
+    showPrevImage();
+  });
+
+  lightboxNext.addEventListener('click', (event) => {
+    event.stopPropagation();
+    showNextImage();
+  });
+
+}
 
   lightbox.addEventListener('click', closeLightbox);
 
@@ -1988,9 +1994,51 @@ if (lightbox && lightboxImage && lightboxClose) {
     event.stopPropagation();
   });
 
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-      closeLightbox();
+ document.addEventListener('keydown', (event) => {
+
+  if (!lightbox.classList.contains('active')) return;
+
+  if (event.key === 'Escape') {
+    closeLightbox();
+  }
+
+  if (event.key === 'ArrowRight') {
+    showNextImage();
+  }
+
+  if (event.key === 'ArrowLeft') {
+    showPrevImage();
+  }
+
+});
+      const lightboxPrev = document.getElementById('lightboxPrev');
+const lightboxNext = document.getElementById('lightboxNext');
+
+const galleryImages = Array.from(
+  document.querySelectorAll('.editorial-image, .project-hero-image, .project-card-image, .floorplan-image, .slide')
+);
+
+let currentImageIndex = 0;
+
+function openLightbox(index) {
+  currentImageIndex = index;
+  const img = galleryImages[currentImageIndex];
+
+  lightboxImage.src = img.currentSrc || img.src;
+  lightboxImage.alt = img.alt || '';
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function showNextImage() {
+  currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+  openLightbox(currentImageIndex);
+}
+
+function showPrevImage() {
+  currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+  openLightbox(currentImageIndex);
+}
     }
   });
 }
