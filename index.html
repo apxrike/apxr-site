@@ -470,33 +470,34 @@ padding-top: 16px;
       margin-top: 32px;
     }
 
-   .hero-meta {
+.hero-meta {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-  margin-top: 56px;
-  padding-top: 32px;
-  border-top: 1px solid var(--line);
-  width: 100%;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  max-width: 360px;
 }
 
-    .hero-meta div {
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(32, 32, 29, 0.62);
-    }
+.hero-meta div {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 20px;
+  align-items: baseline;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(32, 32, 29, 0.58);
+}
 
-    .hero-meta strong {
-      display: block;
-      font-size: 14px;
-      letter-spacing: 0.02em;
-      text-transform: none;
-      color: var(--charcoal);
-      margin-bottom: 6px;
-      font-weight: 500;
-    }
-
+.hero-meta strong {
+  font-size: 13px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--charcoal);
+  font-weight: 500;
+}
     .featured-strip {
       padding: 42px 0 76px;
       background: var(--sand-soft);
