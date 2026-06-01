@@ -1021,11 +1021,12 @@ padding-top: 16px;
   position: fixed;
   inset: 0;
   z-index: 3000;
-  background: rgba(20, 20, 18, 0.92);
+  background: rgba(20, 20, 18, 0.94);
   display: none;
   align-items: center;
   justify-content: center;
   padding: 32px;
+  cursor: zoom-out;
 }
 
 .lightbox.active {
@@ -1033,10 +1034,11 @@ padding-top: 16px;
 }
 
 .lightbox img {
-  max-width: min(1200px, 94vw);
+  max-width: min(1300px, 92vw);
   max-height: 88vh;
   object-fit: contain;
   display: block;
+  cursor: default;
 }
 
 .lightbox-close {
@@ -1047,19 +1049,54 @@ padding-top: 16px;
   font-size: 36px;
   line-height: 1;
   z-index: 3100;
-  opacity: 0.85;
+  opacity: 0.75;
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
 }
 
 .lightbox-close:hover {
   opacity: 1;
+  transform: scale(1.04);
+}
+
+.lightbox-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3100;
+  width: 56px;
+  height: 72px;
+  color: var(--sand-soft);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 64px;
+  line-height: 1;
+  opacity: 0.68;
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.lightbox-nav:hover {
+  opacity: 1;
+}
+
+.lightbox-prev {
+  left: 28px;
+}
+
+.lightbox-next {
+  right: 28px;
 }
 
 .editorial-image,
 .project-hero-image,
 .project-card-image,
-.floorplan-image,
 .slide {
-  cursor: zoom-in;
+  cursor: pointer;
+}
+
+.editorial-image:hover,
+.project-hero-image:hover,
+.project-card-image:hover,
+.slide:hover {
+  filter: brightness(0.96);
 }
 
     @media (max-width: 1120px) {
@@ -1794,9 +1831,14 @@ Designed as a long-term family residence, the project reflects a commitment to d
   </div>
 
   <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" id="lightboxClose" aria-label="Close image">×</button>
-    <img src="" alt="" id="lightboxImage">
-  </div>
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close image">×</button>
+
+  <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image">‹</button>
+
+  <img src="" alt="" id="lightboxImage">
+
+  <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image">›</button>
+</div>
 
   <script>
     const header = document.getElementById('siteHeader');
@@ -1914,38 +1956,80 @@ revealElements.forEach((el) => {
   revealObserver.observe(el);
 });
     const lightbox = document.getElementById('lightbox');
-    const lightboxImage = document.getElementById('lightboxImage');
-    const lightboxClose = document.getElementById('lightboxClose');
+const lightboxImage = document.getElementById('lightboxImage');
+const lightboxClose = document.getElementById('lightboxClose');
+const lightboxPrev = document.getElementById('lightboxPrev');
+const lightboxNext = document.getElementById('lightboxNext');
 
-    if (lightbox && lightboxImage && lightboxClose) {
-      document.querySelectorAll('.editorial-image, .project-hero-image, .project-card-image, .floorplan-image, .slide').forEach((img) => {
-        img.addEventListener('click', () => {
-          lightboxImage.src = img.currentSrc || img.src;
-          lightboxImage.alt = img.alt || '';
-          lightbox.classList.add('active');
-          document.body.style.overflow = 'hidden';
-        });
-      });
+const galleryImages = Array.from(
+  document.querySelectorAll('.editorial-image, .project-hero-image, .project-card-image, .floorplan-image, .slide')
+);
 
-      function closeLightbox() {
-        lightbox.classList.remove('active');
-        lightboxImage.src = '';
-        document.body.style.overflow = '';
-      }
+let currentImageIndex = 0;
 
-      lightboxClose.addEventListener('click', closeLightbox);
+function openLightbox(index) {
+  currentImageIndex = index;
+  const img = galleryImages[currentImageIndex];
 
-      lightbox.addEventListener('click', (event) => {
-        if (event.target === lightbox) {
-          closeLightbox();
-        }
-      });
+  lightboxImage.src = img.src;
+  lightboxImage.alt = img.alt || '';
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
 
-      document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') {
-          closeLightbox();
-        }
-      });
+function closeLightbox() {
+  lightbox.classList.remove('active');
+  lightboxImage.src = '';
+  document.body.style.overflow = '';
+}
+
+function showNextImage() {
+  currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+  openLightbox(currentImageIndex);
+}
+
+function showPrevImage() {
+  currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+  openLightbox(currentImageIndex);
+}
+
+galleryImages.forEach((img, index) => {
+  img.addEventListener('click', () => {
+    openLightbox(index);
+  });
+});
+
+lightboxClose.addEventListener('click', closeLightbox);
+lightboxNext.addEventListener('click', (event) => {
+  event.stopPropagation();
+  showNextImage();
+});
+lightboxPrev.addEventListener('click', (event) => {
+  event.stopPropagation();
+  showPrevImage();
+});
+
+lightbox.addEventListener('click', closeLightbox);
+
+lightboxImage.addEventListener('click', (event) => {
+  event.stopPropagation();
+});
+
+document.addEventListener('keydown', (event) => {
+  if (!lightbox.classList.contains('active')) return;
+
+  if (event.key === 'Escape') {
+    closeLightbox();
+  }
+
+  if (event.key === 'ArrowRight') {
+    showNextImage();
+  }
+
+  if (event.key === 'ArrowLeft') {
+    showPrevImage();
+  }
+});
     }
   </script>
 </body>
