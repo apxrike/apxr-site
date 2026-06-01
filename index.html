@@ -359,6 +359,8 @@ padding-top: 16px;
     .menu-toggle span::after { top: 6px; }
 
     .mobile-menu {
+      overflow-y: auto;
+      }
       position: fixed;
       inset: 0;
       background: var(--overlay);
@@ -372,6 +374,31 @@ padding-top: 16px;
       justify-content: center;
       padding: 80px 20px;
     }
+    .mobile-menu nav {
+  max-height: 100%;
+  padding: 80px 0 60px;
+}
+
+.mobile-menu button {
+  font-size: clamp(30px, 9vw, 72px);
+}
+
+.mobile-submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: -6px;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+.mobile-submenu button {
+  font-size: clamp(20px, 6vw, 34px);
+  font-family: Inter, Helvetica, Arial, sans-serif;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.58;
+}
 
     body.menu-open .mobile-menu {
       opacity: 1;
@@ -1358,8 +1385,10 @@ padding-top: 16px;
         <button class="nav-link" data-view="about">About</button>
         <button class="nav-link" data-view="scope">Scope</button>
         <button class="nav-link" data-view="projects">Projects</button>
-        <button class="nav-link" data-view="aether">Aether</button>
-        <button class="nav-link" data-view="corfu-residence">Corfu Residence</button>
+<div class="mobile-submenu">
+  <button class="nav-link" data-view="aether">Aether</button>
+  <button class="nav-link" data-view="corfu-residence">Corfu Residence</button>
+</div>
         <button class="nav-link" data-view="contact">Contact</button>
         <button class="nav-link" data-view="legal">Legal</button>
       </nav>
