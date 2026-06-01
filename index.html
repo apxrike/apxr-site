@@ -1390,11 +1390,11 @@ padding-top: 16px;
 
         <div class="featured-strip">
           <div class="container featured-card reveal">
-           <img
-              src="aether-home-1.png"
-              alt="Aether Villa in Kythnos exterior view"
-              class="featured-image"
-            >
+          <div class="featured-slideshow" aria-label="Aether Villa image slideshow">
+  <img src="aether-home-1.png" alt="Aether Villa in Kythnos exterior view" class="slide active">
+  <img src="aether-home-2.png" alt="Aether Villa in Kythnos pool view" class="slide">
+  <img src="aether-home-3.png" alt="Aether Villa in Kythnos interior view" class="slide">
+</div>
             <div>
               <div class="section-label">Featured project</div>
               <h3>Aether — Villa in Kythnos</h3>
@@ -1980,6 +1980,16 @@ Designed as a long-term family residence, the project reflects a commitment to d
     revealElements.forEach((el) => {
       revealObserver.observe(el);
     });
+    const slides = document.querySelectorAll('.featured-slideshow .slide');
+let currentSlide = 0;
+
+if (slides.length > 1) {
+  setInterval(() => {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+  }, 4500);
+}
 
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightboxImage');
