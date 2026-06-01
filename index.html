@@ -1173,6 +1173,49 @@ padding-top: 16px;
         font-size: clamp(38px, 13vw, 62px);
       
       }
+      .lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  background: rgba(20, 20, 18, 0.92);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: min(1200px, 94vw);
+  max-height: 88vh;
+  object-fit: contain;
+  display: block;
+}
+
+.lightbox-close {
+  position: fixed;
+  top: 24px;
+  right: 28px;
+  color: var(--sand-soft);
+  font-size: 36px;
+  line-height: 1;
+  z-index: 3100;
+  opacity: 0.85;
+}
+
+.lightbox-close:hover {
+  opacity: 1;
+}
+
+.editorial-image,
+.project-hero-image,
+.project-card-image,
+.slide {
+  cursor: zoom-in;
+}
     }
   </style>
 </head>
@@ -1839,6 +1882,42 @@ const revealObserver = new IntersectionObserver(
 revealElements.forEach((el) => {
   revealObserver.observe(el);
 });
+    const lightbox = document.getElementById('lightbox');
+const lightboxImage = document.getElementById('lightboxImage');
+const lightboxClose = document.getElementById('lightboxClose');
+
+document.querySelectorAll('.editorial-image, .project-hero-image, .project-card-image, .slide').forEach((img) => {
+  img.addEventListener('click', () => {
+    lightboxImage.src = img.src;
+    lightboxImage.alt = img.alt || '';
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+function closeLightbox() {
+  lightbox.classList.remove('active');
+  lightboxImage.src = '';
+  document.body.style.overflow = '';
+}
+
+lightboxClose.addEventListener('click', closeLightbox);
+
+lightbox.addEventListener('click', (event) => {
+  if (event.target === lightbox) {
+    closeLightbox();
+  }
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    closeLightbox();
+  }
+});
   </script>
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close image">×</button>
+    <img src="" alt="" id="lightboxImage">
+  </div>
 </body>
 </html>
