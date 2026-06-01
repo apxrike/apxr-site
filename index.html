@@ -1958,46 +1958,37 @@ revealElements.forEach((el) => {
     const lightbox = document.getElementById('lightbox');
 const lightboxImage = document.getElementById('lightboxImage');
 const lightboxClose = document.getElementById('lightboxClose');
-const lightboxPrev = document.getElementById('lightboxPrev');
-const lightboxNext = document.getElementById('lightboxNext');
 
-const galleryImages = Array.from(
-  document.querySelectorAll('.editorial-image, .project-hero-image, .project-card-image, .floorplan-image, .slide')
-);
-
-let currentImageIndex = 0;
-
-function openLightbox(index) {
-  currentImageIndex = index;
-  const img = galleryImages[currentImageIndex];
-
-  lightboxImage.src = img.src;
-  lightboxImage.alt = img.alt || '';
-  lightbox.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeLightbox() {
-  lightbox.classList.remove('active');
-  lightboxImage.src = '';
-  document.body.style.overflow = '';
-}
-
-function showNextImage() {
-  currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
-  openLightbox(currentImageIndex);
-}
-
-function showPrevImage() {
-  currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
-  openLightbox(currentImageIndex);
-}
-
-galleryImages.forEach((img, index) => {
-  img.addEventListener('click', () => {
-    openLightbox(index);
+if (lightbox && lightboxImage && lightboxClose) {
+  document.querySelectorAll('.editorial-image, .project-hero-image, .project-card-image, .floorplan-image, .slide').forEach((img) => {
+    img.addEventListener('click', () => {
+      lightboxImage.src = img.currentSrc || img.src;
+      lightboxImage.alt = img.alt || '';
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
   });
-});
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    lightboxImage.src = '';
+    document.body.style.overflow = '';
+  }
+
+  lightboxClose.addEventListener('click', closeLightbox);
+
+  lightbox.addEventListener('click', closeLightbox);
+
+  lightboxImage.addEventListener('click', (event) => {
+    event.stopPropagation();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeLightbox();
+    }
+  });
+}
 
 lightboxClose.addEventListener('click', closeLightbox);
 lightboxNext.addEventListener('click', (event) => {
