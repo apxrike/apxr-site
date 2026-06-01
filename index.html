@@ -1532,9 +1532,11 @@ body.menu-open .mobile-menu {
   .editorial-grid-5 .editorial-image:last-child {
     grid-column: auto;
   }
-.approach-break-image {
-  width: calc(100% - 2px);
-  margin: 80px 0 80px 1px;
+.approach-image-frame {
+  width: 100%;
+  margin: 80px 0;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
   overflow: hidden;
 }
 
@@ -1804,13 +1806,13 @@ Combining architectural training with hands-on ownership and management experien
         </article>
 
       </div>
-          <div class="approach-break-image reveal">
-          <img
-            src="aether-home-2.png"
-            alt="Aether Villa"
-            class="approach-image"
-          >
-        </div>
+          <div class="approach-image-frame reveal">
+  <img
+    src="aether-home-2.png"
+    alt="Aether Villa"
+    class="approach-image"
+  >
+</div>
 
       <div class="page-header reveal" style="margin-top: 96px; margin-bottom: 0;">
         <div>
