@@ -477,12 +477,11 @@ body.menu-open .mobile-menu {
     }
 
     .hero-grid {
-      display: grid;
-      grid-template-columns: 1.18fr 0.82fr;
-      gap: 62px;
-      align-items: end;
-    }
-
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 60px;
+  align-items: start;
+}
     .hero-kicker {
       font-size: 12px;
       text-transform: uppercase;
@@ -1344,14 +1343,16 @@ body.menu-open .mobile-menu {
       .lightbox-next {
         right: 10px;
       }
-     .hero-image-wrap {
-  width: min(100%, 360px);
+    .hero-image-wrap {
+  width: 380px;
   justify-self: end;
 }
 
 .hero-image {
   width: 100%;
-  max-width: 320px;
+  height: 280px;
+  object-fit: cover;
+  display: block;
 }
     }
 
