@@ -639,15 +639,22 @@ padding-top: 16px;
     }
 
     .card {
-      min-height: 285px;
-      padding: 30px;
-      border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: background 0.35s var(--ease);
-    }
+  min-height: 285px;
+  padding: 30px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 42px;
+  transition: background 0.35s var(--ease);
+}
+    .card > div:last-child {
+  align-self: start;
+}
+
+.card h3 {
+  margin-bottom: 16px;
+}
 
     .card:hover {
       background: rgba(216, 200, 174, 0.2);
@@ -1786,7 +1793,7 @@ Combining architectural training with hands-on ownership and management experien
 
       </div>
 
-      <div class="text-columns reveal" style="margin-top: 84px;">
+      <div class="page-header reveal" style="margin-top: 96px; margin-bottom: 0;">
         <div>
           <div class="section-label">How we work</div>
         </div>
