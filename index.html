@@ -436,16 +436,17 @@ padding-top: 16px;
         radial-gradient(circle at 85% 15%, rgba(216, 200, 174, 0.75), transparent 34%),
         linear-gradient(135deg, var(--sand-soft) 0%, #e8dece 100%);
     }
+    .hero .container {
+  width: min(calc(100% - 96px), 1320px);
+}
 
  .hero-grid {
   display: grid;
   grid-template-columns: 1.18fr 0.82fr;
   gap: 62px;
   align-items: end;
-
-  max-width: 1280px;
-  margin: 0 auto;
 }
+    
 
     .hero-kicker {
       font-size: 12px;
@@ -1636,40 +1637,39 @@ body.menu-open .mobile-menu {
 </div>
 <main>
 <section class="view active" data-title="APXR — Built with restraint. Held with purpose." id="view-home">
-<div class="hero">
-<div class="container hero-grid reveal">
-<div class="hero-copy">
-<div class="hero-kicker">Architecture · Development · Asset Repositioning</div>
-<h1 class="hero-title">Built with restraint.<br/>Held with purpose.</h1>
-<div class="hero-text">
-<p>APXR is a Greece-based architecture and real estate development company focused on the creation, transformation and long-term stewardship of high-value spaces.</p>
-<div class="hero-actions">
-<button class="btn nav-link" data-view="aether">Featured project</button>
-<button class="btn nav-link" data-view="contact">Contact</button>
-</div>
-    
-</div>
-    
+  <div class="hero">
+    <div class="container hero-grid reveal">
 
-</div>
-</div>
-<div class="hero-image-wrap">
+      <div class="hero-copy">
+        <div class="hero-kicker">Architecture · Development · Asset Repositioning</div>
+        <h1 class="hero-title">Built with restraint.<br/>Held with purpose.</h1>
 
-  <img
-    alt="View from Corfu Residence"
-    class="hero-image"
-    src="corfu-fortress-night-cover.jpg"
-  />
+        <div class="hero-text">
+          <p>APXR is a Greece-based architecture and real estate development company focused on the creation, transformation and long-term stewardship of high-value spaces.</p>
 
-  <div class="hero-meta">
-    <div><strong>Base</strong>Greece</div>
-    <div><strong>Focus</strong>Architecture-led development</div>
-    <div><strong>Approach</strong>Context, value, longevity</div>
+          <div class="hero-actions">
+            <button class="btn nav-link" data-view="aether">Featured project</button>
+            <button class="btn nav-link" data-view="contact">Contact</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-image-wrap">
+        <img
+          alt="View from Corfu Residence"
+          class="hero-image"
+          src="corfu-fortress-night-cover.jpg"
+        />
+
+        <div class="hero-meta">
+          <div><strong>Base</strong>Greece</div>
+          <div><strong>Focus</strong>Architecture-led development</div>
+          <div><strong>Approach</strong>Context, value, longevity</div>
+        </div>
+      </div>
+
+    </div>
   </div>
-
-</div>
-</div>
-</div>
 <div class="featured-strip">
 <div class="container featured-card reveal">
 <div aria-label="Aether Villa image slideshow" class="featured-slideshow">
