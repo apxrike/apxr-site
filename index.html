@@ -1960,13 +1960,18 @@ const lightboxImage = document.getElementById('lightboxImage');
 const lightboxClose = document.getElementById('lightboxClose');
 
 if (lightbox && lightboxImage && lightboxClose) {
-  document.querySelectorAll('.editorial-image, .project-hero-image, .project-card-image, .floorplan-image, .slide').forEach((img) => {
+
+  document.querySelectorAll(
+    '.editorial-image, .project-hero-image, .project-card-image, .floorplan-image, .slide'
+  ).forEach((img) => {
+
     img.addEventListener('click', () => {
       lightboxImage.src = img.currentSrc || img.src;
       lightboxImage.alt = img.alt || '';
       lightbox.classList.add('active');
       document.body.style.overflow = 'hidden';
     });
+
   });
 
   function closeLightbox() {
@@ -1989,40 +1994,6 @@ if (lightbox && lightboxImage && lightboxClose) {
     }
   });
 }
-
-lightboxClose.addEventListener('click', closeLightbox);
-lightboxNext.addEventListener('click', (event) => {
-  event.stopPropagation();
-  showNextImage();
-});
-lightboxPrev.addEventListener('click', (event) => {
-  event.stopPropagation();
-  showPrevImage();
-});
-
-lightbox.addEventListener('click', closeLightbox);
-
-lightboxImage.addEventListener('click', (event) => {
-  event.stopPropagation();
-});
-
-document.addEventListener('keydown', (event) => {
-  if (!lightbox.classList.contains('active')) return;
-
-  if (event.key === 'Escape') {
-    closeLightbox();
-  }
-
-  if (event.key === 'ArrowRight') {
-    showNextImage();
-  }
-
-  if (event.key === 'ArrowLeft') {
-    showPrevImage();
-  }
-});
-}
-    }
   </script>
 </body>
 </html>
