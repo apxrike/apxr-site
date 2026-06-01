@@ -1,0 +1,2243 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>APXR — Built with restraint. Held with purpose.</title>
+<meta content="APXR is a Greek real estate development, architecture and asset management company focused on enduring projects and long-term ownership." name="description"/>
+<meta content="APXR" name="author"/>
+<link href="https://apxr.gr/" rel="canonical"/>
+<link href="favicon.png" rel="icon" type="image/png"/>
+<!-- Open Graph -->
+<meta content="APXR" property="og:title"/>
+<meta content="Real estate development, architecture and asset management." property="og:description"/>
+<meta content="https://apxr.gr/og-image.jpg" property="og:image"/>
+<meta content="https://apxr.gr/og-image.jpg" property="og:image:secure_url"/>
+<meta content="image/jpeg" property="og:image:type"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="https://apxr.gr/" property="og:url"/>
+<meta content="website" property="og:type"/>
+<meta content="APXR" property="og:site_name"/>
+<!-- Twitter / X -->
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="APXR" name="twitter:title"/>
+<meta content="Real estate development, architecture and asset management." name="twitter:description"/>
+<meta content="https://apxr.gr/og-image.jpg" name="twitter:image"/>
+<style>
+    :root {
+      --sand: #d8c8ae;
+      --sand-light: #eee7dc;
+      --sand-soft: #f7f3ec;
+      --earth: #8f7b61;
+      --stone: #b6a58e;
+      --olive: #6f715c;
+      --charcoal: #20201d;
+      --charcoal-soft: #34332e;
+      --white: #ffffff;
+      --border: rgba(32, 32, 29, 0.16);
+      --overlay: rgba(32, 32, 29, 0.95);
+      --max: 1440px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, Helvetica, Arial, sans-serif;
+      background: var(--sand-soft);
+      color: var(--charcoal);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    a, button {
+      color: inherit;
+      font: inherit;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    button {
+      background: none;
+      border: 0;
+      cursor: pointer;
+    }
+
+    ::selection {
+      background: var(--charcoal);
+      color: var(--sand-soft);
+    }
+
+    .page {
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max));
+      margin: 0 auto;
+    }
+
+    .narrow {
+      width: min(calc(100% - 40px), 980px);
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 96px 0;
+    }
+
+    .section-tight {
+      padding: 64px 0;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--earth);
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    h1, h2, h3, .serif {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-weight: 400;
+      letter-spacing: -0.035em;
+      line-height: 1;
+    }
+
+    h1 {
+      font-size: clamp(48px, 8.3vw, 132px);
+    }
+
+    h2 {
+      font-size: clamp(42px, 6.2vw, 92px);
+    }
+
+    h3 {
+      font-size: clamp(30px, 3.7vw, 54px);
+    }
+
+    p {
+      font-size: clamp(16px, 1.25vw, 18px);
+      color: rgba(32, 32, 29, 0.78);
+    }
+
+    .large-copy {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(30px, 4.2vw, 64px);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      color: var(--charcoal);
+    }
+
+    .muted {
+      color: rgba(32, 32, 29, 0.6);
+    }
+
+    .small {
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid var(--charcoal);
+      padding: 13px 20px;
+      font-size: 12px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      transition: all 0.45s var(--ease);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: var(--charcoal);
+      color: var(--sand-soft);
+      transform: translateY(-2px);
+    }
+
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 1000;
+      padding: 20px 0;
+      background: transparent;
+      transition: background 0.35s var(--ease), padding 0.35s var(--ease), border 0.35s var(--ease);
+    }
+
+    .site-header.scrolled,
+    .site-header.solid {
+      background: rgba(247, 243, 236, 0.45);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(32, 32, 29, 0.08);
+      padding: 13px 0;
+    }
+    
+    .header {
+  backdrop-filter: blur(12px);
+  background: rgba(247,243,236,0.88);
+}
+
+    .header-inner {
+      width: min(calc(100% - 40px), var(--max));
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+   .brand {
+  font-size: 22px;
+  letter-spacing: 0.32em;
+  font-weight: 500;
+  color: var(--charcoal);
+  text-transform: uppercase;
+  line-height: 1;
+  transition: opacity 0.3s var(--ease);
+}
+
+.brand:hover {
+  opacity: 0.7;
+}
+
+    .desktop-nav {
+      display: flex;
+      gap: clamp(18px, 2vw, 34px);
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+      .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+    .desktop-nav button {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(32, 32, 29, 0.72);
+      transition: color 0.3s var(--ease);
+      white-space: nowrap;
+    }
+
+    .desktop-nav button:hover,
+    .desktop-nav button.active {
+      color: var(--charcoal);
+    }
+    .nav-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.dropdown-trigger::after {
+  content: '▾';
+  font-size: 9px;
+  margin-left: 7px;
+  position: relative;
+  top: -1px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+padding-top: 16px;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  min-width: 190px;
+  padding: 14px;
+  background: rgba(247, 243, 236, 0.96);
+  border: 1px solid rgba(32, 32, 29, 0.12);
+  backdrop-filter: blur(18px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.nav-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-menu button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+}
+
+.dropdown-menu button:hover {
+  background: rgba(216, 200, 174, 0.22);
+}
+
+    .menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(32, 32, 29, 0.2);
+      background: rgba(247, 243, 236, 0.6);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1200;
+    }
+
+    .menu-toggle span {
+      width: 18px;
+      height: 1px;
+      background: var(--charcoal);
+      position: relative;
+      transition: all 0.35s var(--ease);
+    }
+
+    .menu-toggle span::before,
+    .menu-toggle span::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 18px;
+      height: 1px;
+      background: var(--charcoal);
+      transition: all 0.35s var(--ease);
+    }
+    
+    .editorial-image,
+.project-hero-image,
+.slide {
+  transition: transform 0.8s ease;
+}
+
+.editorial-image:hover,
+.project-hero-image:hover
+.slide:hover {
+  transform: scale(1.015);
+}
+
+    .menu-toggle span::before { top: -6px; }
+    .menu-toggle span::after { top: 6px; }
+
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      background: var(--overlay);
+      color: var(--sand-soft);
+      z-index: 1100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.45s var(--ease);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 20px;
+    }
+
+    body.menu-open .mobile-menu {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .menu-close {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      width: 48px;
+      height: 48px;
+      border: 1px solid rgba(247, 243, 236, 0.35);
+      background: transparent;
+      color: var(--sand-soft);
+      font-size: 24px;
+      line-height: 1;
+      cursor: pointer;
+      transition: background 0.3s var(--ease), color 0.3s var(--ease);
+    }
+
+    .menu-close:hover {
+      background: var(--sand-soft);
+      color: var(--charcoal);
+    }
+
+    .mobile-menu nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .mobile-menu button {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(42px, 12vw, 86px);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      opacity: 0.88;
+      color: var(--sand-soft);
+      transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+    }
+
+    .mobile-menu button:hover {
+      opacity: 1;
+      transform: translateY(-3px);
+    }
+
+    .view {
+      display: none;
+      min-height: calc(100vh - 180px);
+      animation: fadeView 0.45s var(--ease) both;
+    }
+
+    .view.active {
+      display: block;
+    }
+
+    @keyframes fadeView {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding: 118px 0 58px;
+      position: relative;
+      background:
+        radial-gradient(circle at 85% 15%, rgba(216, 200, 174, 0.75), transparent 34%),
+        linear-gradient(135deg, var(--sand-soft) 0%, #e8dece 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.18fr 0.82fr;
+      gap: 62px;
+      align-items: end;
+    }
+
+    .hero-kicker {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--earth);
+      margin-bottom: 24px;
+      font-weight: 600;
+    }
+
+    .hero-title {
+      margin-bottom: 28px;
+    }
+
+    .hero-text {
+      max-width: 520px;
+      margin-left: auto;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 38px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-meta div {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(32, 32, 29, 0.62);
+    }
+
+    .hero-meta strong {
+      display: block;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+      text-transform: none;
+      color: var(--charcoal);
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    .featured-strip {
+      padding: 42px 0 76px;
+      background: var(--sand-soft);
+      border-top: 1px solid var(--border);
+    }
+
+    .featured-card {
+      display: grid;
+      grid-template-columns: 1fr 0.72fr;
+      gap: 44px;
+      align-items: center;
+    }
+  .featured-slideshow {
+  position: relative;
+  width: 100%;
+  min-height: 480px;
+  overflow: hidden;
+  background: rgba(216, 200, 174, 0.22);
+}
+
+.featured-slideshow .slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 480px;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.2s var(--ease);
+}
+
+.featured-slideshow .slide.active {
+  opacity: 1;
+}
+
+    .image-placeholder {
+      min-height: 380px;
+      border: 1px solid rgba(32, 32, 29, 0.26);
+      background:
+        linear-gradient(135deg, rgba(32, 32, 29, 0.04) 25%, transparent 25%) -20px 0/40px 40px,
+        linear-gradient(225deg, rgba(32, 32, 29, 0.04) 25%, transparent 25%) -20px 0/40px 40px,
+        linear-gradient(315deg, rgba(32, 32, 29, 0.04) 25%, transparent 25%) 0 0/40px 40px,
+        linear-gradient(45deg, rgba(32, 32, 29, 0.04) 25%, transparent 25%) 0 0/40px 40px,
+        rgba(216, 200, 174, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: rgba(32, 32, 29, 0.45);
+      font-size: clamp(22px, 3vw, 44px);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .image-placeholder::after {
+      content: attr(data-size);
+      position: absolute;
+      bottom: 20px;
+      right: 22px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      color: rgba(32, 32, 29, 0.5);
+    }
+
+    .ratio-wide { min-height: min(56vw, 680px); }
+    .ratio-medium { min-height: 480px; }
+    .ratio-tall { min-height: 610px; }
+    .ratio-small { min-height: 300px; }
+    
+    .project-hero-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+    .editorial-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.editorial-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+}
+
+.tall-image {
+  aspect-ratio: 4 / 5;
+}
+    .floorplan-wrap {
+  width: 100%;
+  padding: 36px;
+  border: 1px solid rgba(32, 32, 29, 0.16);
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.floorplan-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+    .founder-image {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(100%);
+  background: white;
+}
+
+    .subpage {
+      padding: 132px 0 84px;
+      background: var(--sand-soft);
+    }
+
+    .page-header {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 72px;
+      align-items: end;
+      margin-bottom: 64px;
+    }
+
+    .page-header p {
+      max-width: 720px;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--border);
+      border-left: 1px solid var(--border);
+    }
+
+    .card {
+      min-height: 285px;
+      padding: 30px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: background 0.35s var(--ease);
+    }
+
+    .card:hover {
+      background: rgba(216, 200, 174, 0.2);
+    }
+
+    .card-number {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      color: var(--earth);
+    }
+
+    .card h3 {
+      font-size: clamp(28px, 3vw, 42px);
+      margin-bottom: 16px;
+    }
+
+    .project-list {
+      display: grid;
+      gap: 72px;
+    }
+
+    .project-card {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 46px;
+      align-items: center;
+      padding-bottom: 72px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-card:nth-child(even) .project-visual {
+      order: 2;
+    }
+    .project-card-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.8s ease;
+}
+
+.project-card-image:hover {
+  transform: scale(1.015);
+}
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0 26px;
+    }
+
+    .pill {
+      border: 1px solid rgba(32, 32, 29, 0.16);
+      padding: 8px 12px;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(32, 32, 29, 0.64);
+    }
+
+    .fact-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      border-top: 1px solid var(--border);
+      border-left: 1px solid var(--border);
+      margin: 48px 0;
+    }
+
+    .fact {
+      padding: 20px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      min-height: 100px;
+    }
+
+    .fact span {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--earth);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .fact strong {
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+
+    .editorial-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .text-columns {
+      display: grid;
+      grid-template-columns: 0.7fr 1fr;
+      gap: 70px;
+      margin: 58px 0;
+    }
+
+    .text-columns p + p {
+      margin-top: 20px;
+    }
+
+    .drawing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .about-panel {
+      background: var(--charcoal);
+      color: var(--sand-soft);
+      padding: 56px;
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 62px;
+      align-items: start;
+    }
+
+    .about-panel p,
+    .about-panel .muted {
+      color: rgba(247, 243, 236, 0.68);
+    }
+
+    .about-panel .section-label {
+      color: var(--sand);
+    }
+
+    .founder-card {
+      border: 1px solid rgba(247, 243, 236, 0.18);
+      padding: 24px;
+    }
+
+    .founder-card .image-placeholder {
+      min-height: 430px;
+      color: rgba(247, 243, 236, 0.42);
+      border-color: rgba(247, 243, 236, 0.18);
+      background: rgba(247, 243, 236, 0.04);
+      margin-bottom: 24px;
+    }
+
+    .founder-card h3 {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .values-list {
+      display: grid;
+      gap: 24px;
+      margin-top: 36px;
+    }
+
+    .value-item {
+      padding-top: 22px;
+      border-top: 1px solid rgba(247, 243, 236, 0.16);
+    }
+
+    .value-item strong {
+      display: block;
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 10px;
+    }
+
+    .contact-grid,
+    .legal-grid {
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 22px;
+      margin-top: 36px;
+    }
+
+    .contact-item {
+      border-top: 1px solid var(--border);
+      padding-top: 18px;
+    }
+
+    .contact-item span {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--earth);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .contact-item a,
+    .contact-item strong {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(24px, 3vw, 40px);
+      line-height: 1.08;
+      font-weight: 400;
+    }
+
+    .legal-table {
+      border-top: 1px solid var(--border);
+      border-left: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+    }
+
+    .legal-table div {
+      padding: 18px 20px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    .legal-table .label {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--earth);
+      font-weight: 600;
+    }
+    .funding-strip {
+  border-top: 1px solid rgba(32, 32, 29, 0.08);
+  background: rgba(216, 200, 174, 0.14);
+  padding: 28px 0;
+}
+
+.funding-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: center;
+}
+
+.funding-label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--earth);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.funding-text p {
+  font-size: 14px;
+  max-width: 720px;
+  color: rgba(32, 32, 29, 0.68);
+}
+
+.funding-logos {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.funding-logos img {
+  height: 48px;
+  width: auto;
+  display: block;
+  opacity: 0.9;
+}
+
+    .footer {
+      background: #191916;
+      color: var(--sand-soft);
+      padding: 48px 0 30px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 58px;
+      padding-bottom: 46px;
+      border-bottom: 1px solid rgba(247, 243, 236, 0.15);
+      align-items: start;
+    }
+
+    .footer-logo img {
+      width: min(280px, 60vw);
+      height: auto;
+      display: block;
+      filter: brightness(0) invert(1);
+      opacity: 0.88;
+    }
+
+    .footer p {
+      color: rgba(247, 243, 236, 0.62);
+    }
+
+  .footer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.footer-info a {
+  font-size: clamp(22px, 3vw, 40px);
+  font-family: Georgia, 'Times New Roman', serif;
+  color: var(--sand-soft);
+  transition: opacity 0.3s var(--ease);
+}
+
+.footer-info a:hover {
+  opacity: 0.7;
+}
+
+.footer-legal {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(247, 243, 236, 0.46);
+  line-height: 1.8;
+}
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      padding-top: 28px;
+      font-size: 12px;
+      color: rgba(247, 243, 236, 0.46);
+    }
+    
+.footer-locations {
+  width: 420px;
+  margin-top: 12px;
+  margin-left: -70px;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(247,243,236,0.42);
+}
+
+    @media (max-width: 1120px) {
+      .desktop-nav {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 1000px) {
+      .hero-grid,
+      .featured-card,
+      .page-header,
+      .project-card,
+      .text-columns,
+      .about-panel,
+      .contact-grid,
+      .legal-grid,
+      .footer-top
+      .funding-inner{
+        grid-template-columns: 1fr;
+      }
+
+      .project-card:nth-child(even) .project-visual {
+        order: 0;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .fact-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .drawing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-text {
+        margin-left: 0;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .container, .narrow, .header-inner {
+        width: min(calc(100% - 30px), var(--max));
+      }
+
+      .section {
+        padding: 72px 0;
+      }
+
+      .section-tight {
+        padding: 50px 0;
+      }
+
+      .subpage {
+        padding: 106px 0 64px;
+      }
+
+      .hero {
+        align-items: center;
+        padding: 92px 0 44px;
+      }
+      
+   .footer-brand {
+  width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+      h1 {
+        font-size: clamp(46px, 15vw, 72px);
+        line-height: 0.96;
+      }
+
+      .hero-kicker {
+        font-size: 10px;
+        line-height: 1.5;
+        margin-bottom: 18px;
+      }
+
+      .hero-grid {
+        gap: 32px;
+      }
+
+      .hero-meta {
+        grid-template-columns: 1fr;
+        margin-top: 28px;
+      }
+
+      .featured-strip {
+        padding: 36px 0 56px;
+      }
+
+      .editorial-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .fact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .legal-table {
+        grid-template-columns: 1fr;
+      }
+
+      .about-panel {
+        padding: 28px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+      }
+      @media (max-width: 680px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 34px;
+    text-align: center;
+  }
+
+  .footer-brand {
+    width: 100%;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  .footer-logo {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .footer-logo img {
+    width: min(260px, 72vw);
+    margin: 0 auto;
+  }
+
+  .footer-locations {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .footer-info {
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-legal {
+    text-align: center;
+  }
+
+  .footer-bottom {
+    align-items: center;
+    text-align: center;
+  }
+}
+
+      .ratio-wide, .ratio-medium, .ratio-tall {
+        min-height: 340px;
+      }
+
+      .contact-item a, .contact-item strong {
+        font-size: 28px;
+      }
+
+      .mobile-menu button {
+        font-size: clamp(38px, 13vw, 62px);
+      
+      }
+      .lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  background: rgba(20, 20, 18, 0.92);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: min(1200px, 94vw);
+  max-height: 88vh;
+  object-fit: contain;
+  display: block;
+}
+
+.lightbox-close {
+  position: fixed;
+  top: 24px;
+  right: 28px;
+  color: var(--sand-soft);
+  font-size: 36px;
+  line-height: 1;
+  z-index: 3100;
+  opacity: 0.85;
+}
+
+.lightbox-close:hover {
+  opacity: 1;
+}
+
+.editorial-image,
+.project-hero-image,
+.project-card-image,
+.slide {
+  cursor: zoom-in;
+}
+    }
+  
+
+/* === APXR final overrides: homepage, projects, mobile menu, lightbox === */
+.editorial-image,
+.project-hero-image,
+.project-card-image,
+.slide,
+.floorplan-image {
+  transition: transform 0.8s ease, filter 0.3s var(--ease);
+}
+
+.editorial-image:hover,
+.project-hero-image:hover,
+.project-card-image:hover,
+.slide:hover,
+.floorplan-image:hover {
+  transform: scale(1.015);
+  filter: brightness(0.96);
+}
+
+.hero {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: 112px 0 70px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(300px, 28vw, 420px);
+  gap: clamp(42px, 6vw, 84px);
+  align-items: center;
+}
+
+.hero-copy {
+  min-width: 0;
+  max-width: 880px;
+}
+
+.hero-title {
+  font-size: clamp(54px, 6.2vw, 104px);
+  line-height: 0.98;
+  margin-bottom: 28px;
+}
+
+.hero-text {
+  max-width: 640px;
+  margin-left: 0;
+}
+
+.hero-image-wrap {
+  width: 100%;
+  max-width: 420px;
+  justify-self: end;
+}
+
+.hero-image {
+  width: 100%;
+  height: clamp(250px, 31vw, 390px);
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.featured-slideshow {
+  position: relative;
+  width: 100%;
+  min-height: 480px;
+  overflow: hidden;
+  background: rgba(216, 200, 174, 0.22);
+}
+
+.featured-slideshow .slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 480px;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.2s var(--ease), transform 0.8s var(--ease), filter 0.3s var(--ease);
+  cursor: default;
+}
+
+.featured-slideshow .slide.active {
+  opacity: 1;
+}
+
+.project-card {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: 46px;
+  align-items: center;
+  padding-bottom: 72px;
+  border-bottom: 1px solid var(--border);
+}
+
+.project-card:nth-child(even) .project-visual {
+  order: 2;
+}
+
+.project-visual {
+  overflow: hidden;
+}
+
+.project-card-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+  cursor: default;
+}
+
+.editorial-grid-5 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.editorial-grid-5 .editorial-image:last-child {
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 9;
+}
+
+.editorial-image,
+.project-hero-image,
+.floorplan-image {
+  cursor: pointer;
+}
+
+.hero-image,
+.featured-slideshow .slide,
+.project-card-image {
+  cursor: default;
+}
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay);
+  color: var(--sand-soft);
+  z-index: 1100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s var(--ease);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  overflow-y: auto;
+}
+
+body.menu-open .mobile-menu {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-menu nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  max-height: 100%;
+  padding: 80px 0 60px;
+}
+
+.mobile-menu button {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(30px, 9vw, 72px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  opacity: 0.88;
+  color: var(--sand-soft);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+}
+
+.mobile-menu button:hover {
+  opacity: 1;
+  transform: translateY(-3px);
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  background: rgba(20, 20, 18, 0.94);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  cursor: zoom-out;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: min(1300px, 92vw);
+  max-height: 88vh;
+  object-fit: contain;
+  display: block;
+  cursor: default;
+}
+
+.lightbox-close {
+  position: fixed;
+  top: 24px;
+  right: 28px;
+  color: var(--sand-soft);
+  font-size: 36px;
+  line-height: 1;
+  z-index: 3100;
+  opacity: 0.75;
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.lightbox-close:hover {
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+.lightbox-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3100;
+  width: 56px;
+  height: 72px;
+  color: var(--sand-soft);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 64px;
+  line-height: 1;
+  opacity: 0.68;
+  transition: opacity 0.25s var(--ease);
+}
+
+.lightbox-nav:hover {
+  opacity: 1;
+}
+
+.lightbox-prev {
+  left: 28px;
+}
+
+.lightbox-next {
+  right: 28px;
+}
+
+.lightbox.single .lightbox-nav {
+  display: none;
+}
+
+@media (max-width: 1000px) {
+  .hero {
+    min-height: auto;
+    padding: 104px 0 56px;
+  }
+
+  .hero-grid,
+  .featured-card,
+  .page-header,
+  .project-card,
+  .text-columns,
+  .about-panel,
+  .contact-grid,
+  .legal-grid,
+  .footer-top,
+  .funding-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-grid {
+    gap: 34px;
+  }
+
+  .hero-title {
+    font-size: clamp(48px, 12vw, 82px);
+  }
+
+  .hero-image-wrap {
+    max-width: 420px;
+    justify-self: start;
+  }
+
+  .hero-image {
+    height: 280px;
+  }
+
+  .project-card:nth-child(even) .project-visual {
+    order: 0;
+  }
+
+  .fact-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .hero {
+    padding: 92px 0 44px;
+  }
+
+  .hero-title {
+    font-size: clamp(46px, 15vw, 72px);
+    line-height: 0.96;
+  }
+
+  .hero-image-wrap {
+    max-width: 100%;
+  }
+
+  .hero-image {
+    height: 240px;
+  }
+
+  .hero-meta,
+  .fact-grid,
+  .legal-table,
+  .editorial-grid,
+  .editorial-grid-4,
+  .editorial-grid-5 {
+    grid-template-columns: 1fr;
+  }
+
+  .editorial-grid-5 .editorial-image:last-child {
+    grid-column: auto;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 34px;
+    text-align: center;
+  }
+
+  .footer-brand {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  .footer-logo {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .footer-logo img {
+    width: min(260px, 72vw);
+    margin: 0 auto;
+  }
+
+  .footer-locations {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .footer-info,
+  .footer-bottom {
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+  }
+
+  .mobile-menu button {
+    font-size: clamp(34px, 11vw, 58px);
+  }
+
+  .lightbox {
+    padding: 20px;
+  }
+
+  .lightbox-nav {
+    font-size: 48px;
+    width: 44px;
+    height: 60px;
+  }
+
+  .lightbox-prev {
+    left: 10px;
+  }
+
+  .lightbox-next {
+    right: 10px;
+  }
+}
+</style>
+</head>
+<body>
+<div class="page">
+<header class="site-header" id="siteHeader">
+<div class="header-inner">
+<button aria-label="APXR home" class="brand nav-link" data-view="home">
+  APXR
+</button>
+<nav aria-label="Main navigation" class="desktop-nav">
+<button class="nav-link active" data-view="home">Home</button>
+<button class="nav-link" data-view="about">About</button>
+<button class="nav-link" data-view="scope">Scope</button>
+<div class="nav-dropdown">
+<button class="nav-link dropdown-trigger" data-view="projects">
+    Projects
+  </button>
+<div class="dropdown-menu">
+<button class="nav-link" data-view="aether">Aether</button>
+<button class="nav-link" data-view="corfu-residence">Corfu Residence</button>
+</div>
+</div>
+<button class="nav-link" data-view="contact">Contact</button>
+<button class="nav-link" data-view="legal">Legal</button>
+</nav>
+<button aria-expanded="false" aria-label="Open menu" class="menu-toggle" id="menuToggle">
+<span></span>
+</button>
+</div>
+</header>
+<div aria-hidden="true" class="mobile-menu" id="mobileMenu">
+<button aria-label="Close menu" class="menu-close" id="menuClose">×</button>
+<nav>
+<button class="nav-link" data-view="home">Home</button>
+<button class="nav-link" data-view="about">About</button>
+<button class="nav-link" data-view="scope">Scope</button>
+<button class="nav-link" data-view="projects">Projects</button>
+
+
+<button class="nav-link" data-view="contact">Contact</button>
+<button class="nav-link" data-view="legal">Legal</button>
+</nav>
+</div>
+<main>
+<section class="view active" data-title="APXR — Built with restraint. Held with purpose." id="view-home">
+<div class="hero">
+<div class="container hero-grid reveal">
+<div class="hero-copy">
+<div class="hero-kicker">Architecture · Development · Asset Repositioning</div>
+<h1 class="hero-title">Built with restraint.<br/>Held with purpose.</h1>
+<div class="hero-text">
+<p>APXR is a Greece-based architecture and real estate development company focused on the creation, transformation and long-term stewardship of high-value spaces.</p>
+<div class="hero-actions">
+<button class="btn nav-link" data-view="aether">Featured project</button>
+<button class="btn nav-link" data-view="contact">Contact</button>
+</div>
+<div class="hero-meta">
+<div><strong>Base</strong>Greece</div>
+<div><strong>Focus</strong>Architecture-led development</div>
+<div><strong>Approach</strong>Context, value, longevity</div>
+</div>
+</div>
+</div>
+<div class="hero-image-wrap">
+<img alt="View from Corfu Residence" class="hero-image" src="corfu-fortress-night-cover.jpg"/>
+</div>
+</div>
+</div>
+<div class="featured-strip">
+<div class="container featured-card reveal">
+<div aria-label="Aether Villa image slideshow" class="featured-slideshow">
+<img alt="Aether Villa in Kythnos exterior view" class="slide active" src="aether-home-1.png"/>
+<img alt="Aether Villa in Kythnos pool view" class="slide" src="aether-home-2.png"/>
+<img alt="Aether Villa in Kythnos interior view" class="slide" src="aether-home-3.png"/>
+</div>
+<div>
+<div class="section-label">Featured project</div>
+<h3>Aether — Villa in Kythnos</h3>
+<div class="project-meta">
+<span class="pill">Cyclades</span>
+<span class="pill">Private residence</span>
+<span class="pill">Under development</span>
+</div>
+<p>A quiet island retreat shaped by horizon, wind, stone and shade.</p>
+<br/>
+<button class="btn nav-link" data-view="aether">View project</button>
+</div>
+</div>
+</div>
+</section>
+<section class="view" data-title="APXR — About" id="view-about">
+<div class="subpage">
+<div class="container">
+<div class="page-header reveal">
+<div>
+<div class="section-label">About</div>
+<h2>Architecture-led development with an operator’s eye for value.</h2>
+</div>
+<p>APXR works at the intersection of architecture, development and asset strategy. We approach property not as a short-term product, but as a long-term spatial and financial asset.</p>
+</div>
+<div class="about-panel">
+<div class="founder-card reveal">
+<img alt="Christoforos Roungeris" class="founder-image" src="christoforos-portrait.jpg">
+<h3>Christoforos Roungeris</h3>
+<p class="small">Architect Engineer MSc. TU Delft<br/>Managing Director, APXR</p>
+</img></div>
+<div>
+<div class="section-label">MANAGING DIRECTOR</div>
+<div class="large-copy" style="color: var(--sand-soft);">Architectural thinking.
+Long-term ownership.</div>
+<br/>
+<p>Christoforos Roungeris is an Architect Engineer and graduate of TU Delft's MSc Architecture, Urbanism &amp; Building Sciences programme. Before joining APXR, he worked for over three years at Dam &amp; Partners Architecten in Amsterdam, contributing to complex residential and mixed-use developments.
+
+Today, as Managing Director of APXR, he oversees the company's development, asset management and strategic growth. Building on a longstanding family real estate portfolio, his focus is on modernizing operations, unlocking value through thoughtful development, and creating assets designed for long-term performance.
+
+Combining architectural training with hands-on ownership and management experience, he approaches real estate as both a spatial and financial discipline.</p>
+<div class="values-list">
+<div class="value-item">
+<strong>Education</strong>
+<p>TU Delft MSc Architecture, Urbanism &amp; Building Sciences</p>
+</div>
+<div class="value-item">
+<strong>Experience</strong>
+<p>
+    Dam &amp; Partners Architecten, Amsterdam<br/>
+    Residential and mixed-use developments<br/>
+    Real estate development &amp; asset management<br/>
+    Coordination with consultants &amp; municipalities<br/>
+    International multidisciplinary practice
+  </p>
+</div>
+<div class="value-item">
+<strong>Current Role</strong>
+<p>Managing Director, APXR</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="view" data-title="APXR — Scope" id="view-scope">
+<div class="subpage">
+<div class="container">
+<div class="page-header reveal">
+<div>
+<div class="section-label">Scope</div>
+<h2>What we do</h2>
+</div>
+<p>From concept to positioning, APXR develops and improves property through a clear architectural and investment lens.</p>
+</div>
+<div class="cards-grid reveal">
+<article class="card">
+<div class="card-number">01</div>
+<div>
+<h3>Development</h3>
+<p>Creation of residential and hospitality-led assets with strong spatial identity, contextual sensitivity and long-term value.</p>
+</div>
+</article>
+<article class="card">
+<div class="card-number">02</div>
+<div>
+<h3>Architecture</h3>
+<p>Design direction, spatial strategy, material concepts, visualization and coordination for buildings and interiors.</p>
+</div>
+</article>
+<article class="card">
+<div class="card-number">03</div>
+<div>
+<h3>Repositioning</h3>
+<p>Targeted renovation and asset improvement strategies for properties with latent architectural, rental or market potential.</p>
+</div>
+</article>
+</div>
+</div>
+</div>
+</section>
+<section class="view" data-title="APXR — Projects" id="view-projects">
+<div class="subpage">
+<div class="container">
+<div class="page-header reveal">
+<div>
+<div class="section-label">Selected work</div>
+<h2>Projects</h2>
+</div>
+<p>A curated overview of current and developing work across private residences, renovations and asset repositioning.</p>
+</div>
+<div class="project-list reveal">
+<article class="project-card">
+<div class="project-visual">
+<img alt="Aether Villa in Kythnos" class="project-card-image ratio-medium" src="aether-hero.png"/>
+</div>
+<div>
+<div class="section-label">Aether</div>
+<h3>Villa in Kythnos</h3>
+<div class="project-meta">
+<span class="pill">Cyclades</span>
+<span class="pill">Private residence</span>
+<span class="pill">Under development</span>
+</div>
+<p>Conceived as a quiet retreat embedded into the Cycladic landscape, Aether balances privacy, horizon and material restraint through a sequence of sheltered exterior spaces and monolithic volumes.</p>
+<br/>
+<button class="btn nav-link" data-view="aether">View project</button>
+</div>
+</article>
+<article class="project-card">
+<div class="project-visual">
+<img alt="Corfu Residence renovation" class="project-card-image ratio-medium" src="corfu-living-hero.png"/>
+</div>
+<div>
+<div class="section-label">Corfu</div>
+<h3>Private residence renovation</h3>
+<div class="project-meta">
+<span class="pill">Private residence</span>
+<span class="pill">Renovation</span>
+<span class="pill">Completed 1994</span>
+</div>
+<p>A private residence renovation in Corfu, completed as a family project in 1994. The work reflects a long-standing engagement with architectural detail, material quality and the transformation of existing buildings into lasting homes.</p>
+<br/>
+<button class="btn nav-link" data-view="corfu-residence">View project</button>
+</div>
+</article>
+</div>
+</div>
+</div>
+</section>
+<section class="view" data-title="APXR — Aether Villa in Kythnos" id="view-aether">
+<div class="subpage">
+<div class="container">
+<div class="page-header reveal">
+<div>
+<div class="section-label">Featured project</div>
+<h2>Aether</h2>
+</div>
+<p>Villa in Kythnos. A private Cycladic retreat shaped by horizon, wind, stone and shade.</p>
+</div>
+<img alt="Aether Villa in Kythnos" class="project-hero-image reveal" src="aether-hero.png">
+<div class="fact-grid reveal">
+<div class="fact"><span>Location</span><strong>Kythnos, Greece</strong></div>
+<div class="fact"><span>Typology</span><strong>Private villa</strong></div>
+<div class="fact"><span>Area</span><strong>Approx. 132 m² interior</strong></div>
+<div class="fact"><span>Status</span><strong>Under development</strong></div>
+<div class="fact"><span>Year</span><strong>2026</strong></div>
+<div class="fact"><span>Scope</span><strong>Development, architecture, visualization</strong></div>
+</div>
+<div class="text-columns reveal">
+<div>
+<div class="section-label">Concept</div>
+</div>
+<div>
+<p>Aether is designed as a restrained island house that prioritizes atmosphere over spectacle. The architecture frames the horizon while remaining grounded in the topography and material language of the Cyclades.</p>
+<p>The project is organized around exterior living, sheltered thresholds and a direct relationship between interior rooms, terrace, pool and landscape. Its expression is intentionally quiet: stone, plaster, shade, water and light.</p>
+</div>
+</div>
+<div class="editorial-grid editorial-grid-4 reveal">
+<img alt="Aether Villa exterior" class="editorial-image tall-image" src="aether-home-1.png"/>
+<img alt="Aether Villa pool" class="editorial-image tall-image" src="aether-home-2.png"/>
+<img alt="Aether Villa interior" class="editorial-image" src="aether-home-3.png"/>
+<img alt="Aether Villa terrace" class="editorial-image" src="aether-home-4.png"/>
+</div>
+<div class="floorplan-wrap reveal">
+<img alt="Aether Villa floor plan" class="floorplan-image" src="aether-floorplan.png"/>
+</div>
+</img></div>
+</div>
+</section>
+<section class="view" data-title="APXR — Corfu Residence Renovation" id="view-corfu-residence">
+<div class="subpage">
+<div class="container">
+<div class="page-header reveal">
+<div>
+<div class="section-label">Private residence</div>
+<h2>Corfu Residence</h2>
+</div>
+<p>
+          A private residence renovation in Corfu, completed in 1994. 
+          A layered family project combining architectural intervention, long-term ownership 
+          and the careful transformation of an existing home.
+        </p>
+</div>
+<img alt="Corfu Residence living room with sea view" class="project-hero-image reveal" src="corfu-living-hero.png"/>
+<div class="fact-grid reveal">
+<div class="fact"><span>Location</span><strong>Corfu, Greece</strong></div>
+<div class="fact"><span>Typology</span><strong>Duplex penthouse</strong></div>
+<div class="fact"><span>Area</span><strong>160 m²</strong></div>
+<div class="fact"><span>Status</span><strong>Completed</strong></div>
+<div class="fact"><span>Year</span><strong>1994</strong></div>
+<div class="fact"><span>Scope</span><strong>Architecture &amp; Interiors</strong></div>
+</div>
+<div class="text-columns reveal">
+<div>
+<div class="section-label">Approach</div>
+</div>
+<div>
+<p>
+           Located in the historic centre of Corfu, this duplex penthouse was comprehensively redeveloped between 1992 and 1994. The project combines traditional urban fabric with generous interior volumes, exposed timber roof structures and panoramic views towards the sea and the Old Fortress.
+
+Designed as a long-term family residence, the project reflects a commitment to durable materials, craftsmanship and timeless architectural character rather than short-term trends.
+          </p>
+<p>
+            Its inclusion in the APXR portfolio marks the continuity between earlier family-led 
+            architectural work and the company’s current direction: improving assets with 
+            restraint, long-term thinking and respect for place.
+          </p>
+</div>
+</div>
+<div class="editorial-grid editorial-grid-5 reveal">
+<img alt="Corfu Residence living room" class="editorial-image" src="corfu-living-1.png"/>
+<img alt="Corfu Residence bedroom" class="editorial-image" src="corfu-bedroom.png"/>
+<img alt="Corfu Residence bathroom" class="editorial-image" src="corfu-bathroom.jpeg"/>
+<img alt="Corfu Residence kitchen" class="editorial-image" src="corfu-kitchen.png"/>
+<img alt="View of the Old Fortress from the Corfu Residence" class="editorial-image" src="corfu-fortress-night.png"/>
+</div>
+</div>
+</div>
+</section>
+<section class="view" data-title="APXR — Contact" id="view-contact">
+<div class="subpage">
+<div class="container contact-grid reveal">
+<div>
+<div class="section-label">Contact</div>
+<h2>Let’s discuss the next asset.</h2>
+</div>
+<div>
+<p>For project inquiries, collaborations or asset repositioning discussions, contact APXR directly.</p>
+<div class="contact-list">
+<div class="contact-item">
+<span>Email</span>
+<a href="mailto:info@apxr.gr">info@apxr.gr</a>
+</div>
+<div class="contact-item">
+<span>Website</span>
+<a href="https://apxr.gr">apxr.gr</a>
+</div>
+<div class="contact-item">
+<span>Company</span>
+<strong>APXR ΙΚΕ</strong>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="view" data-title="APXR — Legal" id="view-legal">
+<div class="subpage">
+<div class="container legal-grid reveal">
+<div>
+<div class="section-label">Legal</div>
+<h2>Company information</h2>
+</div>
+<div>
+<div class="legal-table">
+<div class="label">Legal name</div>
+<div>APXR Ιδιωτική Κεφαλαιουχική Εταιρεία</div>
+<div class="label">Distinctive title</div>
+<div>APXR ΙΚΕ</div>
+<div class="label">ΑΦΜ / VAT</div>
+<div>996414719</div>
+<div class="label">ΔΟΥ / Tax office</div>
+<div>Ά Κέρκυρας</div>
+<div class="label">Αρ. ΓΕΜΗ</div>
+<div>183888601000</div>
+<div class="label">Registered seat</div>
+<div>Dimodokou 1, Corfu, Greece</div>
+<div class="label">Email</div>
+<div><a href="mailto:info@apxr.gr">info@apxr.gr</a></div>
+<div class="label">Website</div>
+<div><a href="https://apxr.gr">apxr.gr</a></div>
+</div>
+<br>
+</br></div>
+</div>
+</div></section>
+</main>
+<section class="funding-strip reveal">
+<div class="container funding-inner">
+<div class="funding-text">
+<span class="funding-label">Co-funded project</span>
+<p>
+        The Aether development project is supported through the TEPIX III financing scheme,
+        with co-financing by the European Union under the ESPA 2021–2027 programme
+        “Competitiveness”.
+      </p>
+</div>
+<div class="funding-logos">
+<img alt="European Union and ESPA 2021-2027" src="eu-espa-banner.png"/>
+<img alt="Hellenic Development Bank" src="hdb-logo.png"/>
+</div>
+</div>
+</section>
+<footer class="footer">
+<div class="container">
+<div class="footer-top">
+<div class="footer-brand">
+<button aria-label="APXR home" class="footer-logo nav-link" data-view="home">
+<img alt="APXR logo" src="logo.png">
+</img></button>
+<div class="footer-locations">
+    ATHENS · CORFU · IOANNINA
+  </div>
+</div>
+<div>
+<p>Architecture, development and asset repositioning. Based in Greece.</p>
+<br>
+<div class="footer-info">
+<a href="mailto:info@apxr.gr">info@apxr.gr</a>
+<div class="footer-legal">
+    APXR ΙΚΕ · ΑΦΜ 996414719 · ΓΕΜΗ 183888601000
+  </div>
+</div>
+</br></div>
+</div>
+<div class="footer-bottom">
+<div>© <span id="year"></span> APXR ΙΚΕ. All rights reserved.</div>
+<div>Built with restraint. Held with purpose.</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="lightbox" id="lightbox">
+<button aria-label="Close image" class="lightbox-close" id="lightboxClose">×</button>
+<button aria-label="Previous image" class="lightbox-nav lightbox-prev" id="lightboxPrev">‹</button>
+<img alt="" id="lightboxImage" src=""/>
+<button aria-label="Next image" class="lightbox-nav lightbox-next" id="lightboxNext">›</button>
+</div><script>
+    const header = document.getElementById('siteHeader');
+    const menuToggle = document.getElementById('menuToggle');
+    const menuClose = document.getElementById('menuClose');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const year = document.getElementById('year');
+    const views = document.querySelectorAll('.view');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    if (year) year.textContent = new Date().getFullYear();
+
+    function updateHeader() {
+      const homeView = document.getElementById('view-home');
+      if (!header || !homeView) return;
+
+      if (window.scrollY > 20 || !homeView.classList.contains('active')) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }
+
+    function closeMenu() {
+      document.body.classList.remove('menu-open');
+      if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+      if (mobileMenu) mobileMenu.setAttribute('aria-hidden', 'true');
+    }
+
+    function openMenu() {
+      document.body.classList.add('menu-open');
+      if (menuToggle) menuToggle.setAttribute('aria-expanded', 'true');
+      if (mobileMenu) mobileMenu.setAttribute('aria-hidden', 'false');
+    }
+
+    function setActiveNav(viewName) {
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.dataset.view === viewName);
+      });
+    }
+
+    function showView(viewName, pushState = true) {
+      const target = document.getElementById(`view-${viewName}`);
+      if (!target) return;
+
+      views.forEach(view => view.classList.remove('active'));
+      target.classList.add('active');
+      setActiveNav(viewName);
+      closeMenu();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      document.title = target.dataset.title || 'APXR';
+
+      if (pushState) {
+        const hash = viewName === 'home' ? '' : `#/${viewName}`;
+        history.pushState({ view: viewName }, '', `${window.location.pathname}${hash}`);
+      }
+
+      updateHeader();
+    }
+
+    function viewFromHash() {
+      const hash = window.location.hash.replace('#/', '').replace('#', '');
+      return hash || 'home';
+    }
+
+    window.addEventListener('scroll', updateHeader);
+    updateHeader();
+
+    if (menuToggle) menuToggle.addEventListener('click', openMenu);
+    if (menuClose) menuClose.addEventListener('click', closeMenu);
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        const viewName = link.dataset.view;
+        showView(viewName);
+      });
+    });
+
+    window.addEventListener('popstate', () => {
+      showView(viewFromHash(), false);
+    });
+
+    showView(viewFromHash(), false);
+
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    revealElements.forEach((el) => revealObserver.observe(el));
+
+    const slides = document.querySelectorAll('.featured-slideshow .slide');
+    let currentSlide = 0;
+
+    if (slides.length > 1) {
+      setInterval(() => {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+      }, 4500);
+    }
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
+
+    const lightboxSelector = '.editorial-image, .project-hero-image, .floorplan-image';
+    let currentGalleryImages = [];
+    let currentImageIndex = 0;
+
+    function getVisibleGalleryForImage(img) {
+      const activeView = img.closest('.view.active');
+      const scope = activeView || document;
+      return Array.from(scope.querySelectorAll(lightboxSelector));
+    }
+
+    function updateLightboxImage() {
+      const img = currentGalleryImages[currentImageIndex];
+      if (!img || !lightbox || !lightboxImage) return;
+
+      lightboxImage.src = img.currentSrc || img.src;
+      lightboxImage.alt = img.alt || '';
+      lightbox.classList.toggle('single', currentGalleryImages.length <= 1);
+    }
+
+    function openLightbox(img) {
+      currentGalleryImages = getVisibleGalleryForImage(img);
+      currentImageIndex = currentGalleryImages.indexOf(img);
+      if (currentImageIndex < 0) currentImageIndex = 0;
+
+      updateLightboxImage();
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      if (!lightbox || !lightboxImage) return;
+      lightbox.classList.remove('active');
+      lightboxImage.src = '';
+      lightboxImage.alt = '';
+      document.body.style.overflow = '';
+    }
+
+    function showNextImage() {
+      if (!currentGalleryImages.length) return;
+      currentImageIndex = (currentImageIndex + 1) % currentGalleryImages.length;
+      updateLightboxImage();
+    }
+
+    function showPrevImage() {
+      if (!currentGalleryImages.length) return;
+      currentImageIndex = (currentImageIndex - 1 + currentGalleryImages.length) % currentGalleryImages.length;
+      updateLightboxImage();
+    }
+
+    document.querySelectorAll(lightboxSelector).forEach((img) => {
+      img.addEventListener('click', () => openLightbox(img));
+    });
+
+    if (lightboxClose) {
+      lightboxClose.addEventListener('click', (event) => {
+        event.stopPropagation();
+        closeLightbox();
+      });
+    }
+
+    if (lightboxPrev) {
+      lightboxPrev.addEventListener('click', (event) => {
+        event.stopPropagation();
+        showPrevImage();
+      });
+    }
+
+    if (lightboxNext) {
+      lightboxNext.addEventListener('click', (event) => {
+        event.stopPropagation();
+        showNextImage();
+      });
+    }
+
+    if (lightboxImage) {
+      lightboxImage.addEventListener('click', (event) => event.stopPropagation());
+    }
+
+    if (lightbox) {
+      lightbox.addEventListener('click', closeLightbox);
+    }
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        if (lightbox && lightbox.classList.contains('active')) {
+          closeLightbox();
+        } else {
+          closeMenu();
+        }
+      }
+
+      if (!lightbox || !lightbox.classList.contains('active')) return;
+
+      if (event.key === 'ArrowRight') showNextImage();
+      if (event.key === 'ArrowLeft') showPrevImage();
+    });
+</script>
+
+</body>
+</html>
