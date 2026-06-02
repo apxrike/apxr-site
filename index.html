@@ -589,6 +589,19 @@ padding-top: 16px;
   gap: 24px;
   margin-top: 24px;
 }
+    .editorial-grid-8 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.editorial-grid-8 .editorial-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+}
 
 .editorial-image {
   width: 100%;
@@ -1533,7 +1546,8 @@ body.menu-open .mobile-menu {
   .legal-table,
   .editorial-grid,
   .editorial-grid-4,
-  .editorial-grid-5 {
+  .editorial-grid-5,
+  .editorial-grid-8 {
     grid-template-columns: 1fr;
   }
 
